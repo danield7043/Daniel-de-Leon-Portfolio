@@ -121,6 +121,7 @@
             font-weight: bold;
             transition: all 0.3s ease;
             animation: fadeInUp 1s ease 0.4s both;
+            margin: 0 10px;
         }
 
         .cta-button:hover {
@@ -245,68 +246,6 @@
 
         .slider-arrow.next {
             right: 20px;
-        }
-
-        /* Gallery Section */
-        .gallery-section {
-            padding: 5rem 2rem;
-            background-color: var(--primary-light);
-        }
-
-        .gallery-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 10px;
-            aspect-ratio: 1;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            transition: box-shadow 0.3s ease;
-        }
-
-        .gallery-item:hover {
-            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.2);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .gallery-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(26, 26, 26, 0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
-        }
-
-        .gallery-icon {
-            font-size: 2rem;
-            color: var(--accent);
         }
 
         /* About Section */
@@ -495,11 +434,6 @@
                 font-size: 1.2rem;
             }
 
-            .gallery-container {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                gap: 1rem;
-            }
-
             .about-content {
                 grid-template-columns: 1fr;
             }
@@ -512,10 +446,6 @@
         @media (max-width: 480px) {
             .hero-content h1 {
                 font-size: 1.5rem;
-            }
-
-            .gallery-container {
-                grid-template-columns: 1fr;
             }
 
             nav ul {
@@ -540,7 +470,7 @@
         <a href="#" class="logo">Portfolio</a>
         <ul>
             <li><a href="#slider">Featured</a></li>
-            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#" onclick="openGallery(); return false;">Gallery</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -552,6 +482,7 @@
             <h1>Welcome to My Portfolio</h1>
             <p>Showcasing my best work and creative vision</p>
             <a href="#slider" class="cta-button">View Featured Work</a>
+            <a href="#" onclick="openGallery(); return false;" class="cta-button">View Gallery</a>
         </div>
     </section>
 
@@ -587,49 +518,6 @@
 
             <!-- Slider Dots -->
             <div class="slider-controls" id="sliderControls"></div>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section id="gallery" class="gallery-section">
-        <h2 class="section-title" style="color: var(--secondary-dark);">Gallery</h2>
-        <div class="gallery-container">
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=500&fit=crop" alt="Portfolio item 1">
-                <div class="gallery-overlay">
-                    <i class="fas fa-search gallery-icon"></i>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=500&h=500&fit=crop" alt="Portfolio item 2">
-                <div class="gallery-overlay">
-                    <i class="fas fa-search gallery-icon"></i>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=500&h=500&fit=crop" alt="Portfolio item 3">
-                <div class="gallery-overlay">
-                    <i class="fas fa-search gallery-icon"></i>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1511379938547-c1f69b13d835?w=500&h=500&fit=crop" alt="Portfolio item 4">
-                <div class="gallery-overlay">
-                    <i class="fas fa-search gallery-icon"></i>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1514306688772-aadcb36c4bcc?w=500&h=500&fit=crop" alt="Portfolio item 5">
-                <div class="gallery-overlay">
-                    <i class="fas fa-search gallery-icon"></i>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=500&h=500&fit=crop" alt="Portfolio item 6">
-                <div class="gallery-overlay">
-                    <i class="fas fa-search gallery-icon"></i>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -741,16 +629,23 @@
         // Initialize
         createDots();
 
+        // Open gallery in new window
+        function openGallery() {
+            window.open('gallery.html', 'Gallery', 'width=1200,height=800,scrollbars=yes');
+        }
+
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                if (this.getAttribute('href') !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
                 }
             });
         });
@@ -760,25 +655,6 @@
             e.preventDefault();
             alert('Thank you for your booking request! We will contact you soon.');
             this.reset();
-        });
-
-        // Scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.gallery-item, .about-content').forEach(el => {
-            observer.observe(el);
         });
     </script>
 </body>
