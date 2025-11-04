@@ -87,29 +87,28 @@
 
         /* Hero Section */
         .hero {
-            margin-top: 80px;
-            padding: 6rem 2rem;
-            text-align: center;
-            background: linear-gradient(135deg, var(--primary-light) 0%, #EFEFEF 100%);
-            min-height: 60vh;
+            margin-top: 60px;
+            min-height: 100vh;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--secondary-dark) 0%, #2C2C2C 100%);
+            text-align: center;
+            padding: 2rem;
         }
 
-        .hero h1 {
+        .hero-content h1 {
             font-size: 3.5rem;
-            color: var(--secondary-dark);
             margin-bottom: 1rem;
-            font-weight: 700;
+            animation: fadeInUp 1s ease;
+            color: var(--primary-light);
         }
 
-        .hero p {
+        .hero-content p {
             font-size: 1.3rem;
-            color: var(--text-dark);
+            color: var(--border-light);
             margin-bottom: 2rem;
-            max-width: 600px;
+            animation: fadeInUp 1s ease 0.2s both;
         }
 
         .cta-button {
@@ -118,158 +117,30 @@
             background: var(--accent);
             color: var(--primary-light);
             text-decoration: none;
-            border-radius: 5px;
-            font-weight: 600;
+            border-radius: 50px;
+            font-weight: bold;
             transition: all 0.3s ease;
-            border: 2px solid var(--accent);
+            animation: fadeInUp 1s ease 0.4s both;
+            margin: 0 10px;
         }
 
         .cta-button:hover {
-            background: transparent;
-            color: var(--accent);
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+            background: #E55A2B;
         }
 
-        /* Social Media Bar */
-        .social-bar {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .social-icon {
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--secondary-dark);
-            color: var(--accent);
-            border-radius: 50%;
-            text-decoration: none;
-            font-size: 1.3rem;
-            transition: all 0.3s ease;
-            border: 2px solid var(--accent);
-        }
-
-        .social-icon:hover {
-            background: var(--accent);
-            color: var(--primary-light);
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
-        }
-
-        /* Image Slider */
-        #slider {
-            padding: 4rem 2rem;
-            background: var(--primary-light);
-        }
-
-        .slider-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            position: relative;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .slider-wrapper {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%;
-            background: var(--secondary-dark);
-        }
-
-        .slider-content {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .slider-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        .slider-image.active {
-            opacity: 1;
-        }
-
-        .slider-button {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 107, 53, 0.8);
-            color: var(--primary-light);
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-
-        .slider-button:hover {
-            background: var(--accent);
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .slider-button.prev {
-            left: 20px;
-        }
-
-        .slider-button.next {
-            right: 20px;
-        }
-
-        .slider-dots {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-            z-index: 10;
-        }
-
-        .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid var(--accent);
-        }
-
-        .dot.active {
-            background: var(--accent);
-        }
-
-        /* About Section */
-        #about {
-            padding: 4rem 2rem;
-            background: var(--primary-light);
+        /* Image Slider Section */
+        .slider-section {
+            padding: 5rem 2rem;
+            background-color: var(--secondary-dark);
         }
 
         .section-title {
             text-align: center;
             font-size: 2.5rem;
-            color: var(--secondary-dark);
             margin-bottom: 3rem;
+            color: var(--primary-light);
             position: relative;
             padding-bottom: 1rem;
         }
@@ -285,19 +156,175 @@
             background: var(--accent);
         }
 
-        .about-content {
-            max-width: 800px;
+        .slider-container {
+            max-width: 900px;
             margin: 0 auto;
-            text-align: center;
-            color: var(--text-dark);
-            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(255, 107, 53, 0.3);
+        }
+
+        .slider-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slider-item {
+            min-width: 100%;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--primary-light);
+        }
+
+        .slider-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Slider Controls */
+        .slider-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .slider-dot.active {
+            background: var(--accent);
+            transform: scale(1.3);
+        }
+
+        .slider-dot:hover {
+            background: var(--accent);
+        }
+
+        /* Slider Arrows */
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 107, 53, 0.8);
+            color: var(--primary-light);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slider-arrow:hover {
+            background: var(--accent);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .slider-arrow.prev {
+            left: 20px;
+        }
+
+        .slider-arrow.next {
+            right: 20px;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 5rem 2rem;
+            background-color: var(--secondary-dark);
+        }
+
+        .about-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            color: var(--border-light);
             line-height: 1.8;
         }
 
-        /* Contact Section */
-        #contact {
-            padding: 4rem 2rem;
-            background: linear-gradient(135deg, var(--primary-light) 0%, #EFEFEF 100%);
+        .about-image {
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            aspect-ratio: 1;
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.2);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Social Media Bar */
+        .social-bar {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 107, 53, 0.1);
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            color: var(--accent);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--accent);
+            color: var(--primary-light);
+            transform: translateY(-5px);
+        }
+
+        /* Contact Form Section */
+        .contact-section {
+            padding: 5rem 2rem;
+            background-color: var(--primary-light);
         }
 
         .contact-container {
@@ -312,7 +339,7 @@
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
-            color: var(--text-dark);
+            color: var(--accent);
             font-weight: 600;
         }
 
@@ -320,10 +347,11 @@
         .form-group textarea {
             width: 100%;
             padding: 12px;
+            background-color: var(--primary-light);
             border: 2px solid var(--border-light);
             border-radius: 5px;
+            color: var(--text-dark);
             font-family: inherit;
-            font-size: 1rem;
             transition: border-color 0.3s ease;
         }
 
@@ -331,6 +359,7 @@
         .form-group textarea:focus {
             outline: none;
             border-color: var(--accent);
+            box-shadow: 0 0 10px rgba(255, 107, 53, 0.2);
         }
 
         .form-group textarea {
@@ -345,16 +374,16 @@
             color: var(--primary-light);
             border: none;
             border-radius: 5px;
+            font-weight: bold;
             font-size: 1rem;
-            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
         .submit-btn:hover {
-            background: var(--secondary-dark);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+            background: #E55A2B;
         }
 
         /* Footer */
@@ -366,7 +395,19 @@
             color: var(--border-light);
         }
 
-        /* Responsive */
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive */
         @media (max-width: 768px) {
             nav {
                 flex-direction: column;
@@ -379,48 +420,45 @@
                 text-align: center;
             }
 
-            .hero {
-                padding: 3rem 1rem;
-                margin-top: 100px;
-            }
-
-            .hero h1 {
+            .hero-content h1 {
                 font-size: 2rem;
             }
 
-            .hero p {
-                font-size: 1rem;
+            .slider-item {
+                height: 300px;
             }
 
-            .social-bar {
-                gap: 1rem;
-            }
-
-            .social-icon {
-                width: 45px;
-                height: 45px;
-                font-size: 1.1rem;
-            }
-
-            .slider-button {
+            .slider-arrow {
                 width: 40px;
                 height: 40px;
                 font-size: 1.2rem;
             }
 
-            .slider-button.prev {
-                left: 10px;
-            }
-
-            .slider-button.next {
-                right: 10px;
+            .about-content {
+                grid-template-columns: 1fr;
             }
 
             .section-title {
                 font-size: 1.8rem;
             }
+        }
 
-            .about-content {
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 1.5rem;
+            }
+
+            nav ul {
+                gap: 0.5rem;
+            }
+
+            .slider-item {
+                height: 250px;
+            }
+
+            .slider-arrow {
+                width: 35px;
+                height: 35px;
                 font-size: 1rem;
             }
         }
@@ -440,89 +478,97 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <h1>Welcome to My Portfolio</h1>
-        <p>Discover my latest work and creative projects</p>
-        <a href="#contact" class="cta-button">Get In Touch</a>
-        
-        <!-- Social Media Icons -->
-        <div class="social-bar">
-            <a href="https://www.tiktok.com" class="social-icon" title="TikTok">
-                <i class="fab fa-tiktok"></i>
-            </a>
-            <a href="https://www.youtube.com" class="social-icon" title="YouTube">
-                <i class="fab fa-youtube"></i>
-            </a>
-            <a href="https://www.instagram.com" class="social-icon" title="Instagram">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://www.linkedin.com" class="social-icon" title="LinkedIn">
-                <i class="fab fa-linkedin"></i>
-            </a>
+        <div class="hero-content">
+            <h1>Welcome to My Portfolio</h1>
+            <p>Showcasing my best work and creative vision</p>
+            <a href="#slider" class="cta-button">View Featured Work</a>
+            <a href="gallery.html" class="cta-button">View Gallery</a>
         </div>
     </section>
 
-    <!-- Image Slider -->
-    <section id="slider">
+    <!-- Image Slider Section -->
+    <section id="slider" class="slider-section">
+        <h2 class="section-title">Featured Work</h2>
         <div class="slider-container">
-            <div class="slider-wrapper">
-                <div class="slider-content">
-                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1000&h=562&fit=crop" alt="Slide 1" class="slider-image active">
-                    <img src="https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=1000&h=562&fit=crop" alt="Slide 2" class="slider-image">
-                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1000&h=562&fit=crop" alt="Slide 3" class="slider-image">
-                    <img src="https://images.unsplash.com/photo-1511379938547-c1f69b13d835?w=1000&h=562&fit=crop" alt="Slide 4" class="slider-image">
-                    <img src="https://images.unsplash.com/photo-1514306688772-aadcb36c4bcc?w=1000&h=562&fit=crop" alt="Slide 5" class="slider-image">
+            <div class="slider-wrapper" id="sliderWrapper">
+                <div class="slider-item">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&h=500&fit=crop" alt="Featured work 1">
+                </div>
+                <div class="slider-item">
+                    <img src="https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=900&h=500&fit=crop" alt="Featured work 2">
+                </div>
+                <div class="slider-item">
+                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=900&h=500&fit=crop" alt="Featured work 3">
+                </div>
+                <div class="slider-item">
+                    <img src="https://images.unsplash.com/photo-1511379938547-c1f69b13d835?w=900&h=500&fit=crop" alt="Featured work 4">
+                </div>
+                <div class="slider-item">
+                    <img src="https://images.unsplash.com/photo-1514306688772-aadcb36c4bcc?w=900&h=500&fit=crop" alt="Featured work 5">
                 </div>
             </div>
-            <button class="slider-button prev" onclick="changeSlide(-1)">
+
+            <!-- Slider Arrows -->
+            <button class="slider-arrow prev" onclick="moveSlide(-1)">
                 <i class="fas fa-chevron-left"></i>
             </button>
-            <button class="slider-button next" onclick="changeSlide(1)">
+            <button class="slider-arrow next" onclick="moveSlide(1)">
                 <i class="fas fa-chevron-right"></i>
             </button>
-            <div class="slider-dots">
-                <span class="dot active" onclick="currentSlide(0)"></span>
-                <span class="dot" onclick="currentSlide(1)"></span>
-                <span class="dot" onclick="currentSlide(2)"></span>
-                <span class="dot" onclick="currentSlide(3)"></span>
-                <span class="dot" onclick="currentSlide(4)"></span>
-            </div>
+
+            <!-- Slider Dots -->
+            <div class="slider-controls" id="sliderControls"></div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about">
+    <section id="about" class="about-section">
         <h2 class="section-title">About Me</h2>
         <div class="about-content">
-            <p>
-                Welcome to my professional portfolio. I'm passionate about creating stunning visual experiences 
-                and delivering exceptional results. With years of experience in my field, I bring creativity, 
-                attention to detail, and a commitment to excellence to every project.
-            </p>
-            <p style="margin-top: 1.5rem;">
-                Whether you're looking for a creative partner or want to explore my work, I'm here to help bring 
-                your vision to life. Let's create something amazing together!
-            </p>
+            <div class="about-text">
+                <h2>Creative Professional</h2>
+                <p>With over 5 years of experience in the creative industry, I specialize in capturing moments and creating visual stories that resonate with audiences.</p>
+                <p>My passion lies in combining technical expertise with artistic vision to deliver exceptional results that exceed expectations.</p>
+                <p>Whether it's photography, videography, or design, I bring dedication and creativity to every project.</p>
+                <div class="social-bar">
+                    <a href="#" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link" title="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="social-link" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=500&fit=crop" alt="Profile">
+            </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact">
-        <h2 class="section-title">Get In Touch</h2>
+    <section id="contact" class="contact-section">
+        <h2 class="section-title" style="color: var(--secondary-dark);">Book a Session</h2>
         <div class="contact-container">
-            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <form id="contactForm">
                 <div class="form-group">
-                    <label for="name">Name</label>
+                    <label for="name">Full Name</label>
                     <input type="text" id="name" name="name" required>
                 </div>
                 <div class="form-group">
-                    <label for="email">Email</label>
+                    <label for="email">Email Address</label>
                     <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="date">Preferred Date</label>
+                    <input type="date" id="date" name="date" required>
                 </div>
                 <div class="form-group">
                     <label for="message">Message</label>
                     <textarea id="message" name="message" required></textarea>
                 </div>
-                <button type="submit" class="submit-btn">Send Message</button>
+                <button type="submit" class="submit-btn">Send Booking Request</button>
             </form>
         </div>
     </section>
@@ -533,36 +579,78 @@
     </footer>
 
     <script>
-        let currentSlideIndex = 0;
-        const slides = document.querySelectorAll('.slider-image');
-        const dots = document.querySelectorAll('.dot');
+        let currentSlide = 0;
+        const sliderWrapper = document.getElementById('sliderWrapper');
+        const sliderControls = document.getElementById('sliderControls');
+        const totalSlides = document.querySelectorAll('.slider-item').length;
 
-        function changeSlide(n) {
-            currentSlideIndex += n;
-            if (currentSlideIndex >= slides.length) {
-                currentSlideIndex = 0;
-            } else if (currentSlideIndex < 0) {
-                currentSlideIndex = slides.length - 1;
+        // Create slider dots
+        function createDots() {
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+                dot.onclick = () => goToSlide(i);
+                sliderControls.appendChild(dot);
             }
-            showSlide(currentSlideIndex);
         }
 
-        function currentSlide(n) {
-            currentSlideIndex = n;
-            showSlide(currentSlideIndex);
+        // Move slider
+        function moveSlide(direction) {
+            currentSlide += direction;
+            if (currentSlide >= totalSlides) {
+                currentSlide = 0;
+            } else if (currentSlide < 0) {
+                currentSlide = totalSlides - 1;
+            }
+            updateSlider();
         }
 
-        function showSlide(n) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
-            slides[n].classList.add('active');
-            dots[n].classList.add('active');
+        // Go to specific slide
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlider();
+        }
+
+        // Update slider position and dots
+        function updateSlider() {
+            sliderWrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Update dots
+            document.querySelectorAll('.slider-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
         }
 
         // Auto-advance slider every 5 seconds
         setInterval(() => {
-            changeSlide(1);
+            moveSlide(1);
         }, 5000);
+
+        // Initialize
+        createDots();
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href') !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your booking request! We will contact you soon.');
+            this.reset();
+        });
     </script>
 </body>
 </html>
