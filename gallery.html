@@ -122,7 +122,7 @@
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             max-width: 1400px;
-            margin: 0 auto;
+            margin: 0 auto 3rem;
         }
 
         .gallery-item {
@@ -171,6 +171,57 @@
         .gallery-icon {
             font-size: 2rem;
             color: var(--accent);
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .pagination-btn {
+            padding: 10px 15px;
+            background: var(--primary-light);
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .pagination-btn:hover {
+            background: var(--accent);
+            color: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        .pagination-btn.active {
+            background: var(--accent);
+            color: var(--primary-light);
+        }
+
+        .pagination-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .pagination-btn:disabled:hover {
+            background: var(--primary-light);
+            color: var(--accent);
+        }
+
+        .pagination-info {
+            color: var(--text-dark);
+            font-weight: 600;
+            margin: 0 1rem;
+            font-size: 0.95rem;
         }
 
         /* Modal */
@@ -300,6 +351,20 @@
             .modal-nav.next {
                 right: 10px;
             }
+
+            .pagination {
+                gap: 0.3rem;
+            }
+
+            .pagination-btn {
+                padding: 8px 12px;
+                font-size: 0.8rem;
+            }
+
+            .pagination-info {
+                font-size: 0.85rem;
+                margin: 0 0.5rem;
+            }
         }
     </style>
 </head>
@@ -318,11 +383,24 @@
     <!-- Main Content -->
     <main>
         <div class="gallery-header">
-            <h1>Daniel de León</h1>
+            <h1>Photo Gallery</h1>
             <p>Explore my complete collection of work</p>
         </div>
 
         <div class="gallery-container" id="galleryContainer"></div>
+
+        <!-- Pagination -->
+        <div class="pagination" id="paginationContainer">
+            <button class="pagination-btn" id="prevBtn" onclick="previousPage()">
+                <i class="fas fa-chevron-left"></i> Previous
+            </button>
+            <div class="pagination-info">
+                Page <span id="currentPage">1</span> of <span id="totalPages">1</span>
+            </div>
+            <button class="pagination-btn" id="nextBtn" onclick="nextPage()">
+                Next <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
     </main>
 
     <!-- Modal for full-size images -->
@@ -341,12 +419,18 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Portfolio Daniel de León. All rights reserved.</p>
+        <p>&copy; 2025 Professional Portfolio. All rights reserved.</p>
     </footer>
 
     <script>
-        // Gallery images array
+        // Gallery images array - Add as many as you want!
         const images = [
+            'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=500&fit=crop',
+            'https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=500&h=500&fit=crop',
+            'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=500&h=500&fit=crop',
+            'https://images.unsplash.com/photo-1511379938547-c1f69b13d835?w=500&h=500&fit=crop',
+            'https://images.unsplash.com/photo-1514306688772-aadcb36c4bcc?w=500&h=500&fit=crop',
+            'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=500&h=500&fit=crop',
             'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=500&fit=crop',
             'https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=500&h=500&fit=crop',
             'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=500&h=500&fit=crop',
@@ -361,23 +445,74 @@
             'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=500&h=500&fit=crop',
         ];
 
+        // Pagination settings
+        const itemsPerPage = 6; // Change this to show more or fewer items per page
+        let currentPage = 1;
         let currentImageIndex = 0;
 
-        // Create gallery items
+        // Calculate total pages
+        const totalPages = Math.ceil(images.length / itemsPerPage);
+
+        // Get images for current page
+        function getPageImages() {
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            return images.slice(startIndex, endIndex);
+        }
+
+        // Create gallery items for current page
         function createGallery() {
             const container = document.getElementById('galleryContainer');
-            images.forEach((image, index) => {
+            container.innerHTML = ''; // Clear previous items
+            
+            const pageImages = getPageImages();
+            const startIndex = (currentPage - 1) * itemsPerPage;
+
+            pageImages.forEach((image, index) => {
                 const item = document.createElement('div');
                 item.className = 'gallery-item';
-                item.onclick = () => openModal(index);
+                const globalIndex = startIndex + index;
+                item.onclick = () => openModal(globalIndex);
                 item.innerHTML = `
-                    <img src="${image}" alt="Gallery item ${index + 1}">
+                    <img src="${image}" alt="Gallery item ${globalIndex + 1}">
                     <div class="gallery-overlay">
                         <i class="fas fa-search gallery-icon"></i>
                     </div>
                 `;
                 container.appendChild(item);
             });
+
+            updatePaginationButtons();
+        }
+
+        // Update pagination buttons
+        function updatePaginationButtons() {
+            document.getElementById('currentPage').textContent = currentPage;
+            document.getElementById('totalPages').textContent = totalPages;
+            
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            prevBtn.disabled = currentPage === 1;
+            nextBtn.disabled = currentPage === totalPages;
+        }
+
+        // Next page
+        function nextPage() {
+            if (currentPage < totalPages) {
+                currentPage++;
+                createGallery();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // Previous page
+        function previousPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                createGallery();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
         }
 
         // Open modal
@@ -395,13 +530,13 @@
             modal.classList.remove('active');
         }
 
-        // Next image
+        // Next image in modal
         function nextImage() {
             currentImageIndex = (currentImageIndex + 1) % images.length;
             document.getElementById('modalImage').src = images[currentImageIndex];
         }
 
-        // Previous image
+        // Previous image in modal
         function prevImage() {
             currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
             document.getElementById('modalImage').src = images[currentImageIndex];
