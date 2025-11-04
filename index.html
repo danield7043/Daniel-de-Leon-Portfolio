@@ -470,7 +470,7 @@
         <a href="#" class="logo">Portfolio</a>
         <ul>
             <li><a href="#slider">Featured</a></li>
-            <li><a href="#" onclick="openGallery(); return false;">Gallery</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -482,7 +482,7 @@
             <h1>Welcome to My Portfolio</h1>
             <p>Showcasing my best work and creative vision</p>
             <a href="#slider" class="cta-button">View Featured Work</a>
-            <a href="#" onclick="openGallery(); return false;" class="cta-button">View Gallery</a>
+            <a href="gallery.html" class="cta-button">View Gallery</a>
         </div>
     </section>
 
@@ -628,11 +628,6 @@
 
         // Initialize
         createDots();
-
-        // Open gallery in new window
-        function openGallery() {
-            window.open('gallery.html', 'Gallery', 'width=1200,height=800,scrollbars=yes');
-        }
 
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
