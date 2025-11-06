@@ -216,35 +216,34 @@
 
         /* Before/After Section */
         .before-after-section {
-            background: var(--primary-light);
+            background: var(--secondary-dark);
             padding: 5rem 2rem;
         }
 
-        .comparison-gallery {
-            max-width: 1200px;
+        .before-after-slider-container {
+            max-width: 1000px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 3rem;
-        }
-
-        .comparison-wrapper {
-            background: white;
+            position: relative;
+            overflow: hidden;
             border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(255, 107, 53, 0.3);
+        }
+
+        .before-after-slider-wrapper {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .before-after-slide {
+            min-width: 100%;
+            background: var(--primary-light);
             padding: 2rem;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .comparison-wrapper:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 50px rgba(255, 107, 53, 0.2);
-        }
-
-        .comparison-title {
+        .slide-title {
             text-align: center;
             color: var(--accent);
-            font-size: 1.3rem;
+            font-size: 1.8rem;
             margin-bottom: 1.5rem;
             font-weight: 600;
         }
@@ -256,6 +255,7 @@
             border-radius: 15px;
             cursor: col-resize;
             user-select: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         .comparison-image {
@@ -353,10 +353,63 @@
             font-size: 0.9rem;
         }
 
+        /* Before/After Navigation */
+        .ba-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 107, 53, 0.8);
+            color: var(--primary-light);
+            border: none;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ba-arrow:hover {
+            background: var(--accent);
+            transform: translateY(-50%) scale(1.15);
+        }
+
+        .ba-prev { left: 20px; }
+        .ba-next { right: 20px; }
+
+        .ba-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 10;
+        }
+
+        .ba-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .ba-dot.active {
+            background: var(--accent);
+            transform: scale(1.4);
+        }
+
         /* Image Slider Section */
         .slider-section {
             padding: 5rem 2rem;
             background-color: var(--secondary-dark);
+            display: none;
         }
 
         .section-title {
@@ -901,18 +954,26 @@
                 font-size: 1.1rem;
             }
 
+            .before-after-slide {
+                padding: 1.5rem;
+            }
+
+            .slide-title {
+                font-size: 1.4rem;
+            }
+
             .comparison-image {
                 height: 400px;
             }
 
-            .comparison-gallery {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+            .ba-arrow {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
             }
 
-            .comparison-wrapper {
-                padding: 1.5rem;
-            }
+            .ba-prev { left: 10px; }
+            .ba-next { right: 10px; }
 
             .slider-item {
                 height: 350px;
@@ -950,12 +1011,23 @@
                 font-size: 0.9rem;
             }
 
+            .before-after-slide {
+                padding: 1rem;
+            }
+
+            .slide-title {
+                font-size: 1.1rem;
+                margin-bottom: 1rem;
+            }
+
             .comparison-image {
                 height: 300px;
             }
 
-            .comparison-title {
-                font-size: 1.1rem;
+            .ba-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
             }
 
             .handle-circle {
@@ -991,7 +1063,6 @@
         </div>
         <ul id="navMenu">
             <li><a href="#beforeafter">Before/After</a></li>
-            <li><a href="#slider">Featured</a></li>
             <li><a href="gallery.html">Gallery</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -1004,161 +1075,145 @@
             <h1>Welcome to My Portfolio</h1>
             <p class="typing-text" id="typingText"></p>
             <div>
-                <a href="#slider" class="cta-button">View Featured Work</a>
+                <a href="#beforeafter" class="cta-button">View Before/After</a>
                 <a href="gallery.html" class="cta-button">Explore Gallery</a>
             </div>
         </div>
     </section>
 
-    <!-- Before/After Section -->
+    <!-- Before/After Slider Section -->
     <section id="beforeafter" class="before-after-section">
-        <h2 class="section-title" style="color: var(--secondary-dark); margin-bottom: 1rem;">Before & After</h2>
-        <p style="text-align: center; color: var(--text-dark); font-size: 1.1rem; max-width: 700px; margin: 0 auto 3rem;">Experience the transformation. Drag the slider to compare the before and after results of professional editing</p>
+        <h2 class="section-title">Before & After</h2>
+        <p style="text-align: center; color: var(--text-light); font-size: 1.1rem; max-width: 700px; margin: 0 auto 3rem;">Experience the transformation. Drag the slider to compare professional editing results</p>
         
-        <!-- Comparison Gallery -->
-        <div class="comparison-gallery">
-            <!-- Comparison 1 -->
-            <div class="comparison-wrapper">
-                <h3 class="comparison-title">Portrait Enhancement</h3>
-                <div class="comparison-slider" data-slider="1">
-                    <div class="comparison-image before-image">
-                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&h=600&fit=crop&sat=-50&brightness=-10" alt="Before">
-                        <div class="image-label">BEFORE</div>
-                    </div>
-                    <div class="comparison-image after-image">
-                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&h=600&fit=crop" alt="After">
-                        <div class="image-label">AFTER</div>
-                    </div>
-                    <div class="slider-handle">
-                        <div class="handle-line"></div>
-                        <div class="handle-circle">
-                            <i class="fas fa-chevron-left"></i>
-                            <i class="fas fa-chevron-right"></i>
+        <div class="before-after-slider-container">
+            <div class="before-after-slider-wrapper" id="beforeAfterWrapper">
+                <!-- Comparison 1 -->
+                <div class="before-after-slide">
+                    <h3 class="slide-title">Portrait Enhancement</h3>
+                    <div class="comparison-slider" data-slider="1">
+                        <div class="comparison-image before-image">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=1000&h=700&fit=crop&sat=-50&brightness=-10" alt="Before">
+                            <div class="image-label">BEFORE</div>
                         </div>
-                        <div class="handle-line"></div>
+                        <div class="comparison-image after-image">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=1000&h=700&fit=crop" alt="After">
+                            <div class="image-label">AFTER</div>
+                        </div>
+                        <div class="slider-handle">
+                            <div class="handle-line"></div>
+                            <div class="handle-circle">
+                                <i class="fas fa-chevron-left"></i>
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                            <div class="handle-line"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comparison 2 -->
+                <div class="before-after-slide">
+                    <h3 class="slide-title">Landscape Color Grading</h3>
+                    <div class="comparison-slider" data-slider="2">
+                        <div class="comparison-image before-image">
+                            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1000&h=700&fit=crop&sat=-80" alt="Before">
+                            <div class="image-label">BEFORE</div>
+                        </div>
+                        <div class="comparison-image after-image">
+                            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1000&h=700&fit=crop" alt="After">
+                            <div class="image-label">AFTER</div>
+                        </div>
+                        <div class="slider-handle">
+                            <div class="handle-line"></div>
+                            <div class="handle-circle">
+                                <i class="fas fa-chevron-left"></i>
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                            <div class="handle-line"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comparison 3 -->
+                <div class="before-after-slide">
+                    <h3 class="slide-title">Automotive Photography</h3>
+                    <div class="comparison-slider" data-slider="3">
+                        <div class="comparison-image before-image">
+                            <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1000&h=700&fit=crop&sat=-60&brightness=-15" alt="Before">
+                            <div class="image-label">BEFORE</div>
+                        </div>
+                        <div class="comparison-image after-image">
+                            <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1000&h=700&fit=crop" alt="After">
+                            <div class="image-label">AFTER</div>
+                        </div>
+                        <div class="slider-handle">
+                            <div class="handle-line"></div>
+                            <div class="handle-circle">
+                                <i class="fas fa-chevron-left"></i>
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                            <div class="handle-line"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comparison 4 -->
+                <div class="before-after-slide">
+                    <h3 class="slide-title">Event Photography</h3>
+                    <div class="comparison-slider" data-slider="4">
+                        <div class="comparison-image before-image">
+                            <img src="https://images.unsplash.com/photo-1514306688772-aadcb36c4bcc?w=1000&h=700&fit=crop&sat=-70" alt="Before">
+                            <div class="image-label">BEFORE</div>
+                        </div>
+                        <div class="comparison-image after-image">
+                            <img src="https://images.unsplash.com/photo-1514306688772-aadcb36c4bcc?w=1000&h=700&fit=crop" alt="After">
+                            <div class="image-label">AFTER</div>
+                        </div>
+                        <div class="slider-handle">
+                            <div class="handle-line"></div>
+                            <div class="handle-circle">
+                                <i class="fas fa-chevron-left"></i>
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                            <div class="handle-line"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comparison 5 -->
+                <div class="before-after-slide">
+                    <h3 class="slide-title">Urban Night Photography</h3>
+                    <div class="comparison-slider" data-slider="5">
+                        <div class="comparison-image before-image">
+                            <img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1000&h=700&fit=crop&sat=-50&brightness=-20" alt="Before">
+                            <div class="image-label">BEFORE</div>
+                        </div>
+                        <div class="comparison-image after-image">
+                            <img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1000&h=700&fit=crop" alt="After">
+                            <div class="image-label">AFTER</div>
+                        </div>
+                        <div class="slider-handle">
+                            <div class="handle-line"></div>
+                            <div class="handle-circle">
+                                <i class="fas fa-chevron-left"></i>
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                            <div class="handle-line"></div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Comparison 2 -->
-            <div class="comparison-wrapper">
-                <h3 class="comparison-title">Landscape Color Grading</h3>
-                <div class="comparison-slider" data-slider="2">
-                    <div class="comparison-image before-image">
-                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&sat=-80" alt="Before">
-                        <div class="image-label">BEFORE</div>
-                    </div>
-                    <div class="comparison-image after-image">
-                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop" alt="After">
-                        <div class="image-label">AFTER</div>
-                    </div>
-                    <div class="slider-handle">
-                        <div class="handle-line"></div>
-                        <div class="handle-circle">
-                            <i class="fas fa-chevron-left"></i>
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                        <div class="handle-line"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Comparison 3 -->
-            <div class="comparison-wrapper">
-                <h3 class="comparison-title">Automotive Photography</h3>
-                <div class="comparison-slider" data-slider="3">
-                    <div class="comparison-image before-image">
-                        <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&h=600&fit=crop&sat=-60&brightness=-15" alt="Before">
-                        <div class="image-label">BEFORE</div>
-                    </div>
-                    <div class="comparison-image after-image">
-                        <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&h=600&fit=crop" alt="After">
-                        <div class="image-label">AFTER</div>
-                    </div>
-                    <div class="slider-handle">
-                        <div class="handle-line"></div>
-                        <div class="handle-circle">
-                            <i class="fas fa-chevron-left"></i>
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                        <div class="handle-line"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Comparison 4 -->
-            <div class="comparison-wrapper">
-                <h3 class="comparison-title">Event Photography</h3>
-                <div class="comparison-slider" data-slider="4">
-                    <div class="comparison-image before-image">
-                        <img src="https://images.unsplash.com/photo-1514306688772-aadcb36c4bcc?w=800&h=600&fit=crop&sat=-70" alt="Before">
-                        <div class="image-label">BEFORE</div>
-                    </div>
-                    <div class="comparison-image after-image">
-                        <img src="https://images.unsplash.com/photo-1514306688772-aadcb36c4bcc?w=800&h=600&fit=crop" alt="After">
-                        <div class="image-label">AFTER</div>
-                    </div>
-                    <div class="slider-handle">
-                        <div class="handle-line"></div>
-                        <div class="handle-circle">
-                            <i class="fas fa-chevron-left"></i>
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                        <div class="handle-line"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Image Slider Section -->
-    <section id="slider" class="slider-section">
-        <h2 class="section-title">Featured Work</h2>
-        <div class="slider-container">
-            <div class="slider-wrapper" id="sliderWrapper">
-                <div class="slider-item">
-                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1000&h=600&fit=crop" alt="Mountain landscape">
-                    <div class="slider-caption">
-                        <h3>Mountain Serenity</h3>
-                        <p>Capturing nature's majesty</p>
-                    </div>
-                </div>
-                <div class="slider-item">
-                    <img src="https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=1000&h=600&fit=crop" alt="Concert performance">
-                    <div class="slider-caption">
-                        <h3>Live Performance</h3>
-                        <p>Energy and emotion in motion</p>
-                    </div>
-                </div>
-                <div class="slider-item">
-                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1000&h=600&fit=crop" alt="Event photography">
-                    <div class="slider-caption">
-                        <h3>Special Moments</h3>
-                        <p>Preserving memories forever</p>
-                    </div>
-                </div>
-                <div class="slider-item">
-                    <img src="https://images.unsplash.com/photo-1511379938547-c1f69b13d835?w=1000&h=600&fit=crop" alt="Music production">
-                    <div class="slider-caption">
-                        <h3>Studio Sessions</h3>
-                        <p>Behind the scenes creativity</p>
-                    </div>
-                </div>
-                <div class="slider-item">
-                    <img src="https://images.unsplash.com/photo-1514306688772-aadcb36c4bcc?w=1000&h=600&fit=crop" alt="Urban photography">
-                    <div class="slider-caption">
-                        <h3>Urban Exploration</h3>
-                        <p>City life through the lens</p>
-                    </div>
-                </div>
-            </div>
-            <button class="slider-arrow prev" onclick="moveSlide(-1)">
+            <!-- Navigation Arrows -->
+            <button class="ba-arrow ba-prev" onclick="moveBeforeAfterSlide(-1)">
                 <i class="fas fa-chevron-left"></i>
             </button>
-            <button class="slider-arrow next" onclick="moveSlide(1)">
+            <button class="ba-arrow ba-next" onclick="moveBeforeAfterSlide(1)">
                 <i class="fas fa-chevron-right"></i>
             </button>
-            <div class="slider-controls" id="sliderControls"></div>
+
+            <!-- Dots Navigation -->
+            <div class="ba-controls" id="baControls"></div>
         </div>
     </section>
 
@@ -1480,7 +1535,61 @@
             hero.style.transform = `translateY(${scrolled * 0.5}px)`;
         });
 
-        // Before/After Slider functionality - Multiple sliders
+        // Before/After Main Slider functionality
+        let currentBASlide = 0;
+        const baWrapper = document.getElementById('beforeAfterWrapper');
+        const baControls = document.getElementById('baControls');
+        const totalBASlides = document.querySelectorAll('.before-after-slide').length;
+        let baAutoSlideInterval;
+
+        function createBADots() {
+            for (let i = 0; i < totalBASlides; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'ba-dot' + (i === 0 ? ' active' : '');
+                dot.onclick = () => goToBASlide(i);
+                baControls.appendChild(dot);
+            }
+        }
+
+        function moveBeforeAfterSlide(direction) {
+            currentBASlide += direction;
+            if (currentBASlide >= totalBASlides) {
+                currentBASlide = 0;
+            } else if (currentBASlide < 0) {
+                currentBASlide = totalBASlides - 1;
+            }
+            updateBASlider();
+            resetBAAutoSlide();
+        }
+
+        function goToBASlide(index) {
+            currentBASlide = index;
+            updateBASlider();
+            resetBAAutoSlide();
+        }
+
+        function updateBASlider() {
+            baWrapper.style.transform = `translateX(-${currentBASlide * 100}%)`;
+            document.querySelectorAll('.ba-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentBASlide);
+            });
+        }
+
+        function startBAAutoSlide() {
+            baAutoSlideInterval = setInterval(() => {
+                moveBeforeAfterSlide(1);
+            }, 6000);
+        }
+
+        function resetBAAutoSlide() {
+            clearInterval(baAutoSlideInterval);
+            startBAAutoSlide();
+        }
+
+        createBADots();
+        startBAAutoSlide();
+
+        // Before/After Comparison Slider functionality - Multiple sliders
         const comparisonSliders = document.querySelectorAll('.comparison-slider');
         
         comparisonSliders.forEach((slider) => {
@@ -1549,12 +1658,12 @@
             });
         });
 
-        // Add keyboard navigation for featured slider
+        // Add keyboard navigation for before/after slider
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowLeft') {
-                moveSlide(-1);
+                moveBeforeAfterSlide(-1);
             } else if (e.key === 'ArrowRight') {
-                moveSlide(1);
+                moveBeforeAfterSlide(1);
             }
         });
 
