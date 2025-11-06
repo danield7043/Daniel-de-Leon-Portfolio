@@ -13,13 +13,13 @@
         }
 
         :root {
-            --primary-bg: #000000;
-            --secondary-bg: #0A0A0A;
-            --card-bg: #151515;
-            --text-primary: #FFFFFF;
-            --text-secondary: #A0A0A0;
-            --border-color: #2A2A2A;
-            --accent: #FFFFFF;
+            --primary-bg: #FFFFFF;
+            --secondary-bg: #FAFAFA;
+            --card-bg: #F5F5F5;
+            --text-primary: #000000;
+            --text-secondary: #666666;
+            --border-color: #E5E5E5;
+            --accent: #000000;
         }
 
         body {
@@ -35,7 +35,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(0, 0, 0, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             padding: 1.2rem 3rem;
             z-index: 1000;
@@ -100,7 +100,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=1920&h=1080&fit=crop') center/cover no-repeat;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=1920&h=1080&fit=crop') center/cover no-repeat;
             background-attachment: fixed;
             text-align: center;
             padding: 2rem;
@@ -113,11 +113,13 @@
             font-weight: 300;
             letter-spacing: 2px;
             animation: fadeInUp 1s ease;
+            color: #FFFFFF;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .hero-content .typing-text {
             font-size: 1.2rem;
-            color: var(--text-secondary);
+            color: #E5E5E5;
             margin-bottom: 3rem;
             font-weight: 300;
             letter-spacing: 1px;
@@ -127,10 +129,10 @@
         .cta-button {
             display: inline-block;
             padding: 14px 40px;
-            background: transparent;
-            color: var(--text-primary);
+            background: #FFFFFF;
+            color: #000000;
             text-decoration: none;
-            border: 1px solid var(--text-primary);
+            border: 1px solid #FFFFFF;
             font-weight: 400;
             transition: all 0.3s ease;
             animation: fadeInUp 1s ease 0.4s both;
@@ -140,8 +142,8 @@
         }
 
         .cta-button:hover {
-            background: var(--text-primary);
-            color: var(--primary-bg);
+            background: transparent;
+            color: #FFFFFF;
         }
 
         /* Before/After Section */
@@ -172,35 +174,38 @@
             max-width: 1400px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
-            gap: 4rem;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 3rem;
+            padding: 0 2rem;
         }
 
         .comparison-item {
-            background: var(--secondary-bg);
+            background: var(--primary-bg);
             border: 1px solid var(--border-color);
             overflow: hidden;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .comparison-item:hover {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             transform: translateY(-5px);
         }
 
         .comparison-title {
             text-align: center;
             padding: 1.5rem;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             font-weight: 400;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             border-bottom: 1px solid var(--border-color);
+            background: var(--secondary-bg);
         }
 
         .comparison-slider {
             position: relative;
             width: 100%;
             overflow: hidden;
-            cursor: col-resize;
+            cursor: ew-resize;
             user-select: none;
             aspect-ratio: 3/2;
         }
@@ -216,6 +221,7 @@
             height: 100%;
             object-fit: cover;
             display: block;
+            pointer-events: none;
         }
 
         .before-image {
@@ -233,57 +239,60 @@
 
         .image-label {
             position: absolute;
-            top: 15px;
-            padding: 6px 16px;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            font-weight: 400;
-            font-size: 0.75rem;
+            top: 20px;
+            padding: 8px 18px;
+            background: rgba(255, 255, 255, 0.95);
+            color: #000000;
+            font-weight: 500;
+            font-size: 0.7rem;
             letter-spacing: 2px;
             z-index: 2;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(0, 0, 0, 0.1);
         }
 
         .before-image .image-label {
-            right: 15px;
+            right: 20px;
         }
 
         .after-image .image-label {
-            left: 15px;
+            left: 20px;
         }
 
         .slider-handle {
             position: absolute;
             top: 0;
             left: 50%;
-            width: 2px;
+            width: 3px;
             height: 100%;
-            background: white;
-            cursor: col-resize;
+            background: #FFFFFF;
+            cursor: ew-resize;
             transform: translateX(-50%);
             z-index: 10;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         }
 
         .handle-line {
             flex: 1;
-            width: 2px;
-            background: white;
+            width: 3px;
+            background: #FFFFFF;
         }
 
         .handle-circle {
-            width: 50px;
-            height: 50px;
-            background: white;
+            width: 48px;
+            height: 48px;
+            background: #FFFFFF;
+            border: 3px solid #000000;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
+            gap: 4px;
             transition: transform 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
         .slider-handle:hover .handle-circle {
@@ -291,8 +300,8 @@
         }
 
         .handle-circle i {
-            color: black;
-            font-size: 0.7rem;
+            color: #000000;
+            font-size: 0.65rem;
         }
 
         /* Gallery Preview */
@@ -337,6 +346,7 @@
             width: 100%;
             overflow: hidden;
             position: relative;
+            border: 1px solid var(--border-color);
         }
 
         .about-image img {
@@ -345,12 +355,10 @@
             object-fit: cover;
             transition: transform 0.5s ease;
             display: block;
-            filter: grayscale(100%);
         }
 
         .about-image:hover img {
             transform: scale(1.05);
-            filter: grayscale(0%);
         }
 
         .skills-grid {
@@ -443,7 +451,7 @@
         .form-group textarea {
             width: 100%;
             padding: 14px;
-            background: var(--secondary-bg);
+            background: var(--primary-bg);
             border: 1px solid var(--border-color);
             color: var(--text-primary);
             font-family: inherit;
@@ -455,7 +463,6 @@
         .form-group textarea:focus {
             outline: none;
             border-color: var(--text-primary);
-            background: var(--primary-bg);
         }
 
         .form-group textarea {
@@ -466,8 +473,8 @@
         .submit-btn {
             width: 100%;
             padding: 15px;
-            background: transparent;
-            color: var(--text-primary);
+            background: var(--text-primary);
+            color: var(--primary-bg);
             border: 1px solid var(--text-primary);
             font-weight: 400;
             font-size: 1rem;
@@ -477,8 +484,8 @@
         }
 
         .submit-btn:hover {
-            background: var(--text-primary);
-            color: var(--primary-bg);
+            background: transparent;
+            color: var(--text-primary);
         }
 
         /* Footer */
@@ -501,7 +508,7 @@
             height: 45px;
             background: var(--text-primary);
             color: var(--primary-bg);
-            border: none;
+            border: 1px solid var(--text-primary);
             cursor: pointer;
             opacity: 0;
             visibility: hidden;
@@ -1202,9 +1209,6 @@
             el.style.transition = 'all 0.6s ease';
             observer.observe(el);
         });
-    </script>
-</body>
-</html>
     </script>
 </body>
 </html>
