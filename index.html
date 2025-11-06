@@ -111,23 +111,23 @@
             transition: all 0.3s ease;
         }
 
-       /* Hero Section */
-.hero {
-    margin-top: 60px;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-image: linear-gradient(rgba(26, 26, 26, 0.6), rgba(26, 26, 26, 0.6)), url('https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=1920&h=1080&fit=crop');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    text-align: center;
-    padding: 2rem;
-    position: relative;
-    overflow: hidden;
-}
+        /* Hero Section */
+        .hero {
+            margin-top: 60px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: linear-gradient(rgba(26, 26, 26, 0.6), rgba(26, 26, 26, 0.6)), url('https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=1920&h=1080&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
 
         .hero::before {
             content: '';
@@ -214,44 +214,122 @@
             box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
         }
 
-        /* Stats Section */
-        .stats-section {
+        /* Before/After Section */
+        .before-after-section {
             background: var(--primary-light);
-            padding: 4rem 2rem;
-            text-align: center;
+            padding: 5rem 2rem;
         }
 
-        .stats-container {
-            max-width: 1200px;
+        .before-after-container {
+            max-width: 900px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
         }
 
-        .stat-item {
-            padding: 2rem;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
+        .comparison-slider {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            cursor: col-resize;
+            user-select: none;
         }
 
-        .stat-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.2);
+        .comparison-image {
+            position: relative;
+            width: 100%;
+            height: 600px;
         }
 
-        .stat-number {
-            font-size: 3rem;
+        .comparison-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .before-image {
+            position: relative;
+        }
+
+        .after-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+            clip-path: inset(0 0 0 0);
+        }
+
+        .image-label {
+            position: absolute;
+            top: 20px;
+            padding: 8px 20px;
+            background: var(--accent);
+            color: white;
             font-weight: bold;
-            color: var(--accent);
-            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            border-radius: 5px;
+            z-index: 2;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
 
-        .stat-label {
-            color: var(--text-dark);
-            font-size: 1.1rem;
+        .before-image .image-label {
+            right: 20px;
+        }
+
+        .after-image .image-label {
+            left: 20px;
+        }
+
+        .slider-handle {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 4px;
+            height: 100%;
+            background: white;
+            cursor: col-resize;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .handle-line {
+            flex: 1;
+            width: 4px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .handle-circle {
+            width: 60px;
+            height: 60px;
+            background: var(--accent);
+            border: 4px solid white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease;
+        }
+
+        .slider-handle:hover .handle-circle {
+            transform: scale(1.1);
+        }
+
+        .handle-circle i {
+            color: white;
+            font-size: 0.9rem;
         }
 
         /* Image Slider Section */
@@ -802,9 +880,8 @@
                 font-size: 1.1rem;
             }
 
-            .stats-container {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
+            .comparison-image {
+                height: 400px;
             }
 
             .slider-item {
@@ -841,6 +918,15 @@
             .cta-button {
                 padding: 12px 25px;
                 font-size: 0.9rem;
+            }
+
+            .comparison-image {
+                height: 300px;
+            }
+
+            .handle-circle {
+                width: 50px;
+                height: 50px;
             }
 
             .slider-item {
@@ -889,29 +975,28 @@
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="stats-section">
-        <h2 class="section-title" style="color: var(--secondary-dark); margin-bottom: 3rem;">What I Offer</h2>
-        <div class="stats-container">
-            <div class="stat-item">
-                <i class="fas fa-camera" style="font-size: 3rem; color: var(--accent); margin-bottom: 1rem;"></i>
-                <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem;">Photography</h3>
-                <p style="color: #666;">Professional photo sessions for events, portraits, and commercial projects</p>
-            </div>
-            <div class="stat-item">
-                <i class="fas fa-video" style="font-size: 3rem; color: var(--accent); margin-bottom: 1rem;"></i>
-                <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem;">Videography</h3>
-                <p style="color: #666;">Cinematic video production and editing for any occasion</p>
-            </div>
-            <div class="stat-item">
-                <i class="fas fa-palette" style="font-size: 3rem; color: var(--accent); margin-bottom: 1rem;"></i>
-                <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem;">Creative Direction</h3>
-                <p style="color: #666;">Conceptual planning and artistic vision for your projects</p>
-            </div>
-            <div class="stat-item">
-                <i class="fas fa-edit" style="font-size: 3rem; color: var(--accent); margin-bottom: 1rem;"></i>
-                <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem;">Post Production</h3>
-                <p style="color: #666;">Expert photo and video editing to perfect your content</p>
+    <!-- Before/After Section -->
+    <section class="before-after-section">
+        <h2 class="section-title" style="color: var(--secondary-dark); margin-bottom: 1rem;">See The Difference</h2>
+        <p style="text-align: center; color: var(--text-dark); font-size: 1.1rem; max-width: 600px; margin: 0 auto 3rem;">Drag the slider to compare the before and after results of professional editing</p>
+        <div class="before-after-container">
+            <div class="comparison-slider" id="comparisonSlider">
+                <div class="comparison-image before-image">
+                    <img src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=800&h=600&fit=crop&sat=-100" alt="Before">
+                    <div class="image-label">BEFORE</div>
+                </div>
+                <div class="comparison-image after-image" id="afterImage">
+                    <img src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=800&h=600&fit=crop" alt="After">
+                    <div class="image-label">AFTER</div>
+                </div>
+                <div class="slider-handle" id="sliderHandle">
+                    <div class="handle-line"></div>
+                    <div class="handle-circle">
+                        <i class="fas fa-chevron-left"></i>
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                    <div class="handle-line"></div>
+                </div>
             </div>
         </div>
     </section>
@@ -1285,7 +1370,63 @@
             hero.style.transform = `translateY(${scrolled * 0.5}px)`;
         });
 
-        // Add keyboard navigation for slider
+        // Before/After Slider functionality
+        const comparisonSlider = document.getElementById('comparisonSlider');
+        const afterImage = document.getElementById('afterImage');
+        const sliderHandle = document.getElementById('sliderHandle');
+        let isSliding = false;
+
+        function updateSliderPosition(x) {
+            const rect = comparisonSlider.getBoundingClientRect();
+            let position = ((x - rect.left) / rect.width) * 100;
+            
+            // Clamp between 0 and 100
+            position = Math.max(0, Math.min(100, position));
+            
+            afterImage.style.width = position + '%';
+            sliderHandle.style.left = position + '%';
+        }
+
+        // Mouse events
+        sliderHandle.addEventListener('mousedown', () => {
+            isSliding = true;
+        });
+
+        document.addEventListener('mouseup', () => {
+            isSliding = false;
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (isSliding) {
+                updateSliderPosition(e.clientX);
+            }
+        });
+
+        // Touch events for mobile
+        sliderHandle.addEventListener('touchstart', (e) => {
+            isSliding = true;
+            e.preventDefault();
+        });
+
+        document.addEventListener('touchend', () => {
+            isSliding = false;
+        });
+
+        document.addEventListener('touchmove', (e) => {
+            if (isSliding) {
+                const touch = e.touches[0];
+                updateSliderPosition(touch.clientX);
+            }
+        });
+
+        // Click on slider to move handle
+        comparisonSlider.addEventListener('click', (e) => {
+            if (e.target !== sliderHandle && !sliderHandle.contains(e.target)) {
+                updateSliderPosition(e.clientX);
+            }
+        });
+
+        // Add keyboard navigation for featured slider
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowLeft') {
                 moveSlide(-1);
@@ -1323,7 +1464,7 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.gallery-item, .stat-item, .about-content > *').forEach(el => {
+        document.querySelectorAll('.gallery-item, .about-content > *').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'all 0.6s ease';
