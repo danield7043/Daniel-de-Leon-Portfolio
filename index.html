@@ -220,19 +220,40 @@
             padding: 5rem 2rem;
         }
 
-        .before-after-container {
-            max-width: 900px;
+        .comparison-gallery {
+            max-width: 1200px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+
+        .comparison-wrapper {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .comparison-wrapper:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(255, 107, 53, 0.2);
+        }
+
+        .comparison-title {
+            text-align: center;
+            color: var(--accent);
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
         }
 
         .comparison-slider {
             position: relative;
             width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
             overflow: hidden;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
             cursor: col-resize;
             user-select: none;
         }
@@ -884,6 +905,15 @@
                 height: 400px;
             }
 
+            .comparison-gallery {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .comparison-wrapper {
+                padding: 1.5rem;
+            }
+
             .slider-item {
                 height: 350px;
             }
@@ -924,6 +954,10 @@
                 height: 300px;
             }
 
+            .comparison-title {
+                font-size: 1.1rem;
+            }
+
             .handle-circle {
                 width: 50px;
                 height: 50px;
@@ -956,6 +990,7 @@
             <span></span>
         </div>
         <ul id="navMenu">
+            <li><a href="#beforeafter">Before/After</a></li>
             <li><a href="#slider">Featured</a></li>
             <li><a href="gallery.html">Gallery</a></li>
             <li><a href="#about">About</a></li>
@@ -976,26 +1011,101 @@
     </section>
 
     <!-- Before/After Section -->
-    <section class="before-after-section">
-        <h2 class="section-title" style="color: var(--secondary-dark); margin-bottom: 1rem;">See The Difference</h2>
-        <p style="text-align: center; color: var(--text-dark); font-size: 1.1rem; max-width: 600px; margin: 0 auto 3rem;">Drag the slider to compare the before and after results of professional editing</p>
-        <div class="before-after-container">
-            <div class="comparison-slider" id="comparisonSlider">
-                <div class="comparison-image before-image">
-                    <img src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=800&h=600&fit=crop&sat=-100" alt="Before">
-                    <div class="image-label">BEFORE</div>
-                </div>
-                <div class="comparison-image after-image" id="afterImage">
-                    <img src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=800&h=600&fit=crop" alt="After">
-                    <div class="image-label">AFTER</div>
-                </div>
-                <div class="slider-handle" id="sliderHandle">
-                    <div class="handle-line"></div>
-                    <div class="handle-circle">
-                        <i class="fas fa-chevron-left"></i>
-                        <i class="fas fa-chevron-right"></i>
+    <section id="beforeafter" class="before-after-section">
+        <h2 class="section-title" style="color: var(--secondary-dark); margin-bottom: 1rem;">Before & After</h2>
+        <p style="text-align: center; color: var(--text-dark); font-size: 1.1rem; max-width: 700px; margin: 0 auto 3rem;">Experience the transformation. Drag the slider to compare the before and after results of professional editing</p>
+        
+        <!-- Comparison Gallery -->
+        <div class="comparison-gallery">
+            <!-- Comparison 1 -->
+            <div class="comparison-wrapper">
+                <h3 class="comparison-title">Portrait Enhancement</h3>
+                <div class="comparison-slider" data-slider="1">
+                    <div class="comparison-image before-image">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&h=600&fit=crop&sat=-50&brightness=-10" alt="Before">
+                        <div class="image-label">BEFORE</div>
                     </div>
-                    <div class="handle-line"></div>
+                    <div class="comparison-image after-image">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&h=600&fit=crop" alt="After">
+                        <div class="image-label">AFTER</div>
+                    </div>
+                    <div class="slider-handle">
+                        <div class="handle-line"></div>
+                        <div class="handle-circle">
+                            <i class="fas fa-chevron-left"></i>
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                        <div class="handle-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comparison 2 -->
+            <div class="comparison-wrapper">
+                <h3 class="comparison-title">Landscape Color Grading</h3>
+                <div class="comparison-slider" data-slider="2">
+                    <div class="comparison-image before-image">
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&sat=-80" alt="Before">
+                        <div class="image-label">BEFORE</div>
+                    </div>
+                    <div class="comparison-image after-image">
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop" alt="After">
+                        <div class="image-label">AFTER</div>
+                    </div>
+                    <div class="slider-handle">
+                        <div class="handle-line"></div>
+                        <div class="handle-circle">
+                            <i class="fas fa-chevron-left"></i>
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                        <div class="handle-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comparison 3 -->
+            <div class="comparison-wrapper">
+                <h3 class="comparison-title">Automotive Photography</h3>
+                <div class="comparison-slider" data-slider="3">
+                    <div class="comparison-image before-image">
+                        <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&h=600&fit=crop&sat=-60&brightness=-15" alt="Before">
+                        <div class="image-label">BEFORE</div>
+                    </div>
+                    <div class="comparison-image after-image">
+                        <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&h=600&fit=crop" alt="After">
+                        <div class="image-label">AFTER</div>
+                    </div>
+                    <div class="slider-handle">
+                        <div class="handle-line"></div>
+                        <div class="handle-circle">
+                            <i class="fas fa-chevron-left"></i>
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                        <div class="handle-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comparison 4 -->
+            <div class="comparison-wrapper">
+                <h3 class="comparison-title">Event Photography</h3>
+                <div class="comparison-slider" data-slider="4">
+                    <div class="comparison-image before-image">
+                        <img src="https://images.unsplash.com/photo-1514306688772-aadcb36c4bcc?w=800&h=600&fit=crop&sat=-70" alt="Before">
+                        <div class="image-label">BEFORE</div>
+                    </div>
+                    <div class="comparison-image after-image">
+                        <img src="https://images.unsplash.com/photo-1514306688772-aadcb36c4bcc?w=800&h=600&fit=crop" alt="After">
+                        <div class="image-label">AFTER</div>
+                    </div>
+                    <div class="slider-handle">
+                        <div class="handle-line"></div>
+                        <div class="handle-circle">
+                            <i class="fas fa-chevron-left"></i>
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                        <div class="handle-line"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1370,60 +1480,73 @@
             hero.style.transform = `translateY(${scrolled * 0.5}px)`;
         });
 
-        // Before/After Slider functionality
-        const comparisonSlider = document.getElementById('comparisonSlider');
-        const afterImage = document.getElementById('afterImage');
-        const sliderHandle = document.getElementById('sliderHandle');
-        let isSliding = false;
+        // Before/After Slider functionality - Multiple sliders
+        const comparisonSliders = document.querySelectorAll('.comparison-slider');
+        
+        comparisonSliders.forEach((slider) => {
+            const afterImage = slider.querySelector('.after-image');
+            const sliderHandle = slider.querySelector('.slider-handle');
+            let isSliding = false;
+            let currentSlider = null;
 
-        function updateSliderPosition(x) {
-            const rect = comparisonSlider.getBoundingClientRect();
-            let position = ((x - rect.left) / rect.width) * 100;
-            
-            // Clamp between 0 and 100
-            position = Math.max(0, Math.min(100, position));
-            
-            afterImage.style.width = position + '%';
-            sliderHandle.style.left = position + '%';
-        }
-
-        // Mouse events
-        sliderHandle.addEventListener('mousedown', () => {
-            isSliding = true;
-        });
-
-        document.addEventListener('mouseup', () => {
-            isSliding = false;
-        });
-
-        document.addEventListener('mousemove', (e) => {
-            if (isSliding) {
-                updateSliderPosition(e.clientX);
+            function updateSliderPosition(x) {
+                const rect = slider.getBoundingClientRect();
+                let position = ((x - rect.left) / rect.width) * 100;
+                
+                // Clamp between 0 and 100
+                position = Math.max(0, Math.min(100, position));
+                
+                afterImage.style.width = position + '%';
+                sliderHandle.style.left = position + '%';
             }
-        });
 
-        // Touch events for mobile
-        sliderHandle.addEventListener('touchstart', (e) => {
-            isSliding = true;
-            e.preventDefault();
-        });
+            // Mouse events
+            sliderHandle.addEventListener('mousedown', (e) => {
+                isSliding = true;
+                currentSlider = slider;
+                e.preventDefault();
+            });
 
-        document.addEventListener('touchend', () => {
-            isSliding = false;
-        });
+            document.addEventListener('mouseup', () => {
+                if (currentSlider === slider) {
+                    isSliding = false;
+                    currentSlider = null;
+                }
+            });
 
-        document.addEventListener('touchmove', (e) => {
-            if (isSliding) {
-                const touch = e.touches[0];
-                updateSliderPosition(touch.clientX);
-            }
-        });
+            document.addEventListener('mousemove', (e) => {
+                if (isSliding && currentSlider === slider) {
+                    updateSliderPosition(e.clientX);
+                }
+            });
 
-        // Click on slider to move handle
-        comparisonSlider.addEventListener('click', (e) => {
-            if (e.target !== sliderHandle && !sliderHandle.contains(e.target)) {
-                updateSliderPosition(e.clientX);
-            }
+            // Touch events for mobile
+            sliderHandle.addEventListener('touchstart', (e) => {
+                isSliding = true;
+                currentSlider = slider;
+                e.preventDefault();
+            });
+
+            document.addEventListener('touchend', () => {
+                if (currentSlider === slider) {
+                    isSliding = false;
+                    currentSlider = null;
+                }
+            });
+
+            document.addEventListener('touchmove', (e) => {
+                if (isSliding && currentSlider === slider) {
+                    const touch = e.touches[0];
+                    updateSliderPosition(touch.clientX);
+                }
+            });
+
+            // Click on slider to move handle
+            slider.addEventListener('click', (e) => {
+                if (e.target !== sliderHandle && !sliderHandle.contains(e.target)) {
+                    updateSliderPosition(e.clientX);
+                }
+            });
         });
 
         // Add keyboard navigation for featured slider
