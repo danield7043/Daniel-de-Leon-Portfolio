@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photo Gallery - Professional Portfolio</title>
+    <title>Gallery - Professional Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -13,18 +13,19 @@
         }
 
         :root {
-            --primary-light: #F5F5F5;      /* Dominant 60% - White/Light Gray */
-            --secondary-dark: #1A1A1A;     /* Secondary 30% - Black/Charcoal */
-            --accent: #FF6B35;              /* Accent 10% - Vibrant Orange */
-            --text-dark: #2C2C2C;           /* Dark text for readability */
-            --text-light: #F5F5F5;          /* Light text */
-            --border-light: #E0E0E0;        /* Light borders */
+            --primary-bg: #000000;
+            --secondary-bg: #0A0A0A;
+            --card-bg: #151515;
+            --text-primary: #FFFFFF;
+            --text-secondary: #A0A0A0;
+            --border-color: #2A2A2A;
+            --accent: #FFFFFF;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--primary-light);
-            color: var(--text-dark);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -34,120 +35,109 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(245, 245, 245, 0.98);
+            background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
+            padding: 1.2rem 3rem;
             z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 2px solid var(--accent);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s ease;
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--accent);
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
             text-decoration: none;
+            letter-spacing: 1px;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo:hover {
+            opacity: 0.7;
         }
 
         nav ul {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 2.5rem;
         }
 
         nav a {
-            color: var(--text-dark);
+            color: var(--text-secondary);
             text-decoration: none;
             transition: color 0.3s ease;
-            position: relative;
-            font-weight: 500;
+            font-size: 0.95rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
         }
 
         nav a:hover {
-            color: var(--accent);
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background: var(--accent);
-            transition: width 0.3s ease;
-        }
-
-        nav a:hover::after {
-            width: 100%;
+            color: var(--text-primary);
         }
 
         /* Main Content */
         main {
             margin-top: 80px;
-            padding: 3rem 2rem;
+            padding: 5rem 2rem 3rem;
             min-height: calc(100vh - 80px);
         }
 
         .gallery-header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 5rem;
         }
 
         .gallery-header h1 {
             font-size: 2.5rem;
-            color: var(--secondary-dark);
+            font-weight: 300;
+            letter-spacing: 2px;
             margin-bottom: 0.5rem;
         }
 
         .gallery-header p {
-            color: var(--text-dark);
-            font-size: 1.1rem;
-        }
-
-        .gallery-header::after {
-            content: '';
-            display: block;
-            width: 100px;
-            height: 3px;
-            background: var(--accent);
-            margin: 1rem auto 0;
+            color: var(--text-secondary);
+            font-size: 1rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
         }
 
         .gallery-container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            max-width: 1400px;
-            margin: 0 auto 3rem;
+            gap: 1px;
+            max-width: 1600px;
+            margin: 0 auto 4rem;
+            background: var(--border-color);
+            border: 1px solid var(--border-color);
         }
 
         .gallery-item {
             position: relative;
             overflow: hidden;
-            border-radius: 10px;
-            aspect-ratio: 16 / 9;
+            aspect-ratio: 4 / 3;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            transition: box-shadow 0.3s ease;
+            background: var(--secondary-bg);
+            transition: all 0.3s ease;
         }
 
         .gallery-item:hover {
-            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.2);
+            z-index: 10;
         }
 
         .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s ease;
+            filter: grayscale(30%);
         }
 
         .gallery-item:hover img {
-            transform: scale(1.1);
+            transform: scale(1.05);
+            filter: grayscale(0%);
         }
 
         .gallery-overlay {
@@ -156,7 +146,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(26, 26, 26, 0.7);
+            background: rgba(0, 0, 0, 0.7);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -170,7 +160,7 @@
 
         .gallery-icon {
             font-size: 2rem;
-            color: var(--accent);
+            color: var(--text-primary);
         }
 
         /* Pagination */
@@ -178,50 +168,38 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 0.5rem;
-            margin: 3rem 0;
-            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 4rem 0;
         }
 
         .pagination-btn {
-            padding: 10px 15px;
-            background: var(--primary-light);
-            border: 2px solid var(--accent);
-            color: var(--accent);
-            border-radius: 5px;
+            padding: 12px 24px;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
             cursor: pointer;
-            font-weight: 600;
+            font-weight: 400;
             transition: all 0.3s ease;
             font-size: 0.9rem;
+            letter-spacing: 0.5px;
         }
 
-        .pagination-btn:hover {
-            background: var(--accent);
-            color: var(--primary-light);
-            transform: translateY(-2px);
-        }
-
-        .pagination-btn.active {
-            background: var(--accent);
-            color: var(--primary-light);
+        .pagination-btn:hover:not(:disabled) {
+            background: var(--text-primary);
+            color: var(--primary-bg);
+            border-color: var(--text-primary);
         }
 
         .pagination-btn:disabled {
-            opacity: 0.5;
+            opacity: 0.3;
             cursor: not-allowed;
-            transform: none;
-        }
-
-        .pagination-btn:disabled:hover {
-            background: var(--primary-light);
-            color: var(--accent);
         }
 
         .pagination-info {
-            color: var(--text-dark);
-            font-weight: 600;
-            margin: 0 1rem;
+            color: var(--text-secondary);
+            font-weight: 400;
             font-size: 0.95rem;
+            letter-spacing: 0.5px;
         }
 
         /* Modal */
@@ -233,7 +211,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(26, 26, 26, 0.95);
+            background-color: rgba(0, 0, 0, 0.97);
             animation: fadeIn 0.3s ease;
         }
 
@@ -252,34 +230,35 @@
         .modal-content img {
             width: 100%;
             height: auto;
-            border-radius: 10px;
+            max-height: 90vh;
+            object-fit: contain;
         }
 
         .modal-close {
             position: absolute;
-            top: -40px;
+            top: -50px;
             right: 0;
-            color: var(--accent);
+            color: var(--text-primary);
             font-size: 2rem;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: opacity 0.3s ease;
+            font-weight: 300;
         }
 
         .modal-close:hover {
-            transform: scale(1.2);
+            opacity: 0.7;
         }
 
         .modal-nav {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(255, 107, 53, 0.8);
-            color: var(--primary-light);
-            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             width: 50px;
             height: 50px;
-            border-radius: 50%;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             cursor: pointer;
             transition: all 0.3s ease;
             display: flex;
@@ -288,8 +267,8 @@
         }
 
         .modal-nav:hover {
-            background: var(--accent);
-            transform: translateY(-50%) scale(1.1);
+            background: var(--text-primary);
+            color: var(--primary-bg);
         }
 
         .modal-nav.prev {
@@ -302,31 +281,63 @@
 
         /* Footer */
         footer {
-            background-color: var(--secondary-dark);
+            background: var(--primary-bg);
             text-align: center;
-            padding: 2rem;
-            border-top: 2px solid var(--accent);
-            color: var(--border-light);
+            padding: 3rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Loading Animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading.hide {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--border-color);
+            border-top-color: var(--text-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
+        /* Mobile Responsive */
         @media (max-width: 1024px) {
             .gallery-container {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 1.5rem;
             }
         }
 
         @media (max-width: 768px) {
             nav {
+                padding: 1rem 1.5rem;
                 flex-direction: column;
                 gap: 1rem;
             }
@@ -338,17 +349,27 @@
             }
 
             main {
-                margin-top: 120px;
-                padding: 2rem 1rem;
+                margin-top: 150px;
+                padding: 3rem 1rem 2rem;
+            }
+
+            .gallery-header h1 {
+                font-size: 2rem;
             }
 
             .gallery-container {
                 grid-template-columns: 1fr;
-                gap: 1rem;
+                gap: 1px;
             }
 
-            .gallery-header h1 {
-                font-size: 1.8rem;
+            .pagination {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            .pagination-btn {
+                padding: 10px 20px;
+                font-size: 0.85rem;
             }
 
             .modal-nav.prev {
@@ -359,38 +380,40 @@
                 right: 10px;
             }
 
-            .pagination {
-                gap: 0.3rem;
+            .modal-close {
+                top: -40px;
+                font-size: 1.5rem;
             }
+        }
 
-            .pagination-btn {
-                padding: 8px 12px;
-                font-size: 0.8rem;
-            }
-
-            .pagination-info {
-                font-size: 0.85rem;
-                margin: 0 0.5rem;
+        @media (max-width: 480px) {
+            .gallery-header h1 {
+                font-size: 1.8rem;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+    </div>
+
     <!-- Navigation -->
     <nav>
-        <a href="index.html" class="logo">Portfolio</a>
+        <a href="index.html" class="logo">PORTFOLIO</a>
         <ul>
-            <li><a href="index.html#slider">Featured</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="index.html#about">About</a></li>
-            <li><a href="index.html#contact">Contact</a></li>
+            <li><a href="index.html#beforeafter">BEFORE/AFTER</a></li>
+            <li><a href="gallery.html">GALLERY</a></li>
+            <li><a href="index.html#about">ABOUT</a></li>
+            <li><a href="index.html#contact">CONTACT</a></li>
         </ul>
     </nav>
 
     <!-- Main Content -->
     <main>
         <div class="gallery-header">
-            <h1>Photo Gallery</h1>
+            <h1>GALLERY</h1>
             <p>Explore my complete collection of work</p>
         </div>
 
@@ -399,13 +422,13 @@
         <!-- Pagination -->
         <div class="pagination" id="paginationContainer">
             <button class="pagination-btn" id="prevBtn" onclick="previousPage()">
-                <i class="fas fa-chevron-left"></i> Previous
+                <i class="fas fa-chevron-left"></i> PREVIOUS
             </button>
             <div class="pagination-info">
-                Page <span id="currentPage">1</span> of <span id="totalPages">1</span>
+                PAGE <span id="currentPage">1</span> OF <span id="totalPages">1</span>
             </div>
             <button class="pagination-btn" id="nextBtn" onclick="nextPage()">
-                Next <i class="fas fa-chevron-right"></i>
+                NEXT <i class="fas fa-chevron-right"></i>
             </button>
         </div>
     </main>
@@ -426,92 +449,99 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Professional Portfolio. All rights reserved.</p>
+        <p>&copy; 2025 PROFESSIONAL PORTFOLIO. ALL RIGHTS RESERVED.</p>
     </footer>
 
     <script>
-        // Gallery images array - 72 images total (4 pages × 18 images per page)
+        // Loading screen
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loading').classList.add('hide');
+            }, 800);
+        });
+
+        // Gallery images array - 72 images total
         const images = [
             // Page 1
-            'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1511379938547-c1f69b13d835?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1514306688772-aadcb36c4bcc?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1511379938547-c1f69b13d835?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1514306688772-aadcb36c4bcc?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1511379938547-c1f69b13d835?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1514306688772-aadcb36c4bcc?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&h=450&fit=crop',
+            'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1511379938547-c1f69b13d835?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1514306688772-aadcb36c4bcc?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1511379938547-c1f69b13d835?w=800&h=600&fit=crop',
             // Page 2
-            'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1511379938547-c1f69b13d835?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1514306688772-aadcb36c4bcc?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1511379938547-c1f69b13d835?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1514306688772-aadcb36c4bcc?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1511379938547-c1f69b13d835?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1514306688772-aadcb36c4bcc?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&h=450&fit=crop',
+            'https://images.unsplash.com/photo-1514306688772-aadcb36c4bcc?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1511379938547-c1f69b13d835?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1514306688772-aadcb36c4bcc?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=600&fit=crop',
             // Page 3
-            'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1511379938547-c1f69b13d835?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1514306688772-aadcb36c4bcc?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1511379938547-c1f69b13d835?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1514306688772-aadcb36c4bcc?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1511379938547-c1f69b13d835?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1514306688772-aadcb36c4bcc?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&h=450&fit=crop',
+            'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1511379938547-c1f69b13d835?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1514306688772-aadcb36c4bcc?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&h=600&fit=crop',
             // Page 4
-            'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1511379938547-c1f69b13d835?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1514306688772-aadcb36c4bcc?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1511379938547-c1f69b13d835?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1514306688772-aadcb36c4bcc?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1511379938547-c1f69b13d835?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1514306688772-aadcb36c4bcc?w=800&h=450&fit=crop',
-            'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&h=450&fit=crop',
+            'https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1511379938547-c1f69b13d835?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1514306688772-aadcb36c4bcc?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=800&h=600&fit=crop',
         ];
 
         // Pagination settings
-        const itemsPerPage = 18; // 18 images per page (6 rows × 3 columns)
+        const itemsPerPage = 18; // 18 images per page
         let currentPage = 1;
         let currentImageIndex = 0;
 
@@ -528,7 +558,7 @@
         // Create gallery items for current page
         function createGallery() {
             const container = document.getElementById('galleryContainer');
-            container.innerHTML = ''; // Clear previous items
+            container.innerHTML = '';
             
             const pageImages = getPageImages();
             const startIndex = (currentPage - 1) * itemsPerPage;
@@ -541,7 +571,7 @@
                 item.innerHTML = `
                     <img src="${image}" alt="Gallery item ${globalIndex + 1}">
                     <div class="gallery-overlay">
-                        <i class="fas fa-search gallery-icon"></i>
+                        <i class="fas fa-search-plus gallery-icon"></i>
                     </div>
                 `;
                 container.appendChild(item);
