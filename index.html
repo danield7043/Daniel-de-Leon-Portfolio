@@ -111,19 +111,23 @@
             transition: all 0.3s ease;
         }
 
-        /* Hero Section */
-        .hero {
-            margin-top: 60px;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, var(--secondary-dark) 0%, #2C2C2C 100%);
-            text-align: center;
-            padding: 2rem;
-            position: relative;
-            overflow: hidden;
-        }
+       /* Hero Section */
+.hero {
+    margin-top: 60px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(rgba(26, 26, 26, 0.6), rgba(26, 26, 26, 0.6)), url('https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=1920&h=1080&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+}
 
         .hero::before {
             content: '';
@@ -1016,7 +1020,6 @@
                 <div class="social-bar">
                     <a href="#" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
                     <a href="#" class="social-link" title="TikTok"><i class="fab fa-tiktok"></i></a>
-                    <a href="#" class="social-link" title="Twitter"><i class="fab fa-twitter"></i></a>
                     <a href="#" class="social-link" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
                     <a href="#" class="social-link" title="YouTube"><i class="fab fa-youtube"></i></a>
                 </div>
