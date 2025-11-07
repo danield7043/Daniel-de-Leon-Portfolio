@@ -169,24 +169,25 @@
         }
 
         .comparison-gallery-container {
-            max-width: 1600px;
+            max-width: 1800px;
             margin: 0 auto;
             position: relative;
+            padding: 0 2rem;
         }
 
         .comparison-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
             position: relative;
+            border: 1px solid var(--border-color);
         }
 
         .comparison-item {
             position: relative;
             overflow: hidden;
-            aspect-ratio: 4/3;
+            aspect-ratio: 1/1;
             background: var(--secondary-bg);
-            border: 1px solid var(--border-color);
         }
 
         .comparison-image {
@@ -210,78 +211,53 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 50%;
+            width: 0%;
             height: 100%;
             overflow: hidden;
         }
 
-        .image-label {
+        /* Global Slider Overlay */
+        .global-slider-overlay {
             position: absolute;
-            top: 15px;
-            padding: 6px 16px;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            font-weight: 400;
-            font-size: 0.7rem;
-            letter-spacing: 2px;
-            z-index: 2;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .before-image .image-label {
-            right: 15px;
-        }
-
-        .after-image .image-label {
-            left: 15px;
-        }
-
-        /* Global Slider Control */
-        .global-slider-control {
-            max-width: 1600px;
-            margin: 3rem auto 0;
-            padding: 0 2rem;
-        }
-
-        .slider-track {
-            position: relative;
-            height: 60px;
-            background: var(--secondary-bg);
-            border: 1px solid var(--border-color);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-        }
-
-        .slider-fill {
-            position: absolute;
-            left: 0;
             top: 0;
+            left: 0;
+            width: 100%;
             height: 100%;
-            width: 50%;
-            background: var(--border-color);
             pointer-events: none;
-            transition: width 0.05s ease-out;
+            z-index: 100;
+        }
+
+        .slider-line {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 3px;
+            height: 100%;
+            background: var(--text-primary);
+            transform: translateX(-50%);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            pointer-events: all;
+            cursor: ew-resize;
         }
 
         .slider-handle {
             position: absolute;
-            left: 50%;
             top: 50%;
+            left: 50%;
             transform: translate(-50%, -50%);
             width: 60px;
             height: 60px;
             background: var(--text-primary);
             border: 3px solid var(--primary-bg);
             border-radius: 50%;
-            cursor: pointer;
+            cursor: ew-resize;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 6px;
             transition: transform 0.2s ease;
-            z-index: 10;
             box-shadow: 0 4px 20px rgba(255, 255, 255, 0.3);
+            pointer-events: all;
         }
 
         .slider-handle:hover {
@@ -291,15 +267,6 @@
         .slider-handle i {
             color: var(--primary-bg);
             font-size: 0.7rem;
-        }
-
-        .slider-labels {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            color: var(--text-secondary);
         }
 
         /* Gallery Preview */
@@ -577,8 +544,7 @@
         /* Mobile Responsive */
         @media (max-width: 1024px) {
             .comparison-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1.5rem;
+                grid-template-columns: repeat(3, 1fr);
             }
         }
 
@@ -630,8 +596,7 @@
             }
 
             .comparison-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
+                grid-template-columns: repeat(2, 1fr);
             }
 
             .about-content {
@@ -651,8 +616,8 @@
                 padding: 2rem;
             }
 
-            .global-slider-control {
-                padding: 0 1rem;
+            .comparison-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -710,95 +675,138 @@
     <!-- Before/After Gallery Section -->
     <section id="beforeafter" class="before-after-section">
         <h2 class="section-title">BEFORE & AFTER</h2>
-        <p class="section-subtitle">Drag the slider below to see the transformation across all images</p>
+        <p class="section-subtitle">Drag the slider across the images to see the transformation</p>
         
         <div class="comparison-gallery-container">
             <div class="comparison-grid" id="comparisonGrid">
                 <!-- Comparison Item 1 -->
                 <div class="comparison-item">
                     <div class="comparison-image before-image">
-                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&h=600&fit=crop&sat=-50&brightness=-10" alt="Before">
-                        <div class="image-label">BEFORE</div>
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=600&fit=crop&sat=-50&brightness=-10" alt="Before">
                     </div>
                     <div class="comparison-image after-image">
-                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&h=600&fit=crop" alt="After">
-                        <div class="image-label">AFTER</div>
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=600&fit=crop" alt="After">
                     </div>
                 </div>
 
                 <!-- Comparison Item 2 -->
                 <div class="comparison-item">
                     <div class="comparison-image before-image">
-                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&sat=-80" alt="Before">
-                        <div class="image-label">BEFORE</div>
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=600&fit=crop&sat=-80" alt="Before">
                     </div>
                     <div class="comparison-image after-image">
-                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop" alt="After">
-                        <div class="image-label">AFTER</div>
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=600&fit=crop" alt="After">
                     </div>
                 </div>
 
                 <!-- Comparison Item 3 -->
                 <div class="comparison-item">
                     <div class="comparison-image before-image">
-                        <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&h=600&fit=crop&sat=-60&brightness=-15" alt="Before">
-                        <div class="image-label">BEFORE</div>
+                        <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600&h=600&fit=crop&sat=-60&brightness=-15" alt="Before">
                     </div>
                     <div class="comparison-image after-image">
-                        <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&h=600&fit=crop" alt="After">
-                        <div class="image-label">AFTER</div>
+                        <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600&h=600&fit=crop" alt="After">
                     </div>
                 </div>
 
                 <!-- Comparison Item 4 -->
                 <div class="comparison-item">
                     <div class="comparison-image before-image">
-                        <img src="https://images.unsplash.com/photo-1514306688772-aadcb36c4bcc?w=800&h=600&fit=crop&sat=-70" alt="Before">
-                        <div class="image-label">BEFORE</div>
+                        <img src="https://images.unsplash.com/photo-1514306688772-aadcb36c4bcc?w=600&h=600&fit=crop&sat=-70" alt="Before">
                     </div>
                     <div class="comparison-image after-image">
-                        <img src="https://images.unsplash.com/photo-1514306688772-aadcb36c4bcc?w=800&h=600&fit=crop" alt="After">
-                        <div class="image-label">AFTER</div>
+                        <img src="https://images.unsplash.com/photo-1514306688772-aadcb36c4bcc?w=600&h=600&fit=crop" alt="After">
                     </div>
                 </div>
 
                 <!-- Comparison Item 5 -->
                 <div class="comparison-item">
                     <div class="comparison-image before-image">
-                        <img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800&h=600&fit=crop&sat=-50&brightness=-20" alt="Before">
-                        <div class="image-label">BEFORE</div>
+                        <img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=600&h=600&fit=crop&sat=-50&brightness=-20" alt="Before">
                     </div>
                     <div class="comparison-image after-image">
-                        <img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800&h=600&fit=crop" alt="After">
-                        <div class="image-label">AFTER</div>
+                        <img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=600&h=600&fit=crop" alt="After">
                     </div>
                 </div>
 
                 <!-- Comparison Item 6 -->
                 <div class="comparison-item">
                     <div class="comparison-image before-image">
-                        <img src="https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?w=800&h=600&fit=crop&sat=-60&brightness=-20" alt="Before">
-                        <div class="image-label">BEFORE</div>
+                        <img src="https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?w=600&h=600&fit=crop&sat=-60&brightness=-20" alt="Before">
                     </div>
                     <div class="comparison-image after-image">
-                        <img src="https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?w=800&h=600&fit=crop" alt="After">
-                        <div class="image-label">AFTER</div>
+                        <img src="https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?w=600&h=600&fit=crop" alt="After">
+                    </div>
+                </div>
+
+                <!-- Comparison Item 7 -->
+                <div class="comparison-item">
+                    <div class="comparison-image before-image">
+                        <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&h=600&fit=crop&sat=-70" alt="Before">
+                    </div>
+                    <div class="comparison-image after-image">
+                        <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&h=600&fit=crop" alt="After">
+                    </div>
+                </div>
+
+                <!-- Comparison Item 8 -->
+                <div class="comparison-item">
+                    <div class="comparison-image before-image">
+                        <img src="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=600&h=600&fit=crop&sat=-80" alt="Before">
+                    </div>
+                    <div class="comparison-image after-image">
+                        <img src="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=600&h=600&fit=crop" alt="After">
+                    </div>
+                </div>
+
+                <!-- Comparison Item 9 -->
+                <div class="comparison-item">
+                    <div class="comparison-image before-image">
+                        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&h=600&fit=crop&sat=-60" alt="Before">
+                    </div>
+                    <div class="comparison-image after-image">
+                        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&h=600&fit=crop" alt="After">
+                    </div>
+                </div>
+
+                <!-- Comparison Item 10 -->
+                <div class="comparison-item">
+                    <div class="comparison-image before-image">
+                        <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&h=600&fit=crop&sat=-70&brightness=-15" alt="Before">
+                    </div>
+                    <div class="comparison-image after-image">
+                        <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&h=600&fit=crop" alt="After">
+                    </div>
+                </div>
+
+                <!-- Comparison Item 11 -->
+                <div class="comparison-item">
+                    <div class="comparison-image before-image">
+                        <img src="https://images.unsplash.com/photo-1511379938547-c1f69b13d835?w=600&h=600&fit=crop&sat=-80" alt="Before">
+                    </div>
+                    <div class="comparison-image after-image">
+                        <img src="https://images.unsplash.com/photo-1511379938547-c1f69b13d835?w=600&h=600&fit=crop" alt="After">
+                    </div>
+                </div>
+
+                <!-- Comparison Item 12 -->
+                <div class="comparison-item">
+                    <div class="comparison-image before-image">
+                        <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600&h=600&fit=crop&sat=-60" alt="Before">
+                    </div>
+                    <div class="comparison-image after-image">
+                        <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600&h=600&fit=crop" alt="After">
                     </div>
                 </div>
             </div>
 
-            <!-- Global Slider Control -->
-            <div class="global-slider-control">
-                <div class="slider-track" id="sliderTrack">
-                    <div class="slider-fill" id="sliderFill"></div>
+            <!-- Global Slider Overlay -->
+            <div class="global-slider-overlay" id="sliderOverlay">
+                <div class="slider-line" id="sliderLine">
                     <div class="slider-handle" id="sliderHandle">
                         <i class="fas fa-chevron-left"></i>
                         <i class="fas fa-chevron-right"></i>
                     </div>
-                </div>
-                <div class="slider-labels">
-                    <span>BEFORE</span>
-                    <span>AFTER</span>
                 </div>
             </div>
         </div>
@@ -976,27 +984,46 @@
             });
         });
 
-        // Global Before/After Slider
-        const sliderTrack = document.getElementById('sliderTrack');
+        // Global Before/After Slider (Life Through Optics style)
+        const sliderOverlay = document.getElementById('sliderOverlay');
+        const sliderLine = document.getElementById('sliderLine');
         const sliderHandle = document.getElementById('sliderHandle');
-        const sliderFill = document.getElementById('sliderFill');
-        const afterImages = document.querySelectorAll('.after-image');
+        const comparisonGrid = document.getElementById('comparisonGrid');
+        const comparisonItems = document.querySelectorAll('.comparison-item');
         let isDragging = false;
 
         function updateSliderPosition(clientX) {
-            const rect = sliderTrack.getBoundingClientRect();
-            let position = ((clientX - rect.left) / rect.width) * 100;
+            const gridRect = comparisonGrid.getBoundingClientRect();
+            let position = clientX - gridRect.left;
             
-            // Clamp between 0 and 100
-            position = Math.max(0, Math.min(100, position));
+            // Clamp between 0 and grid width
+            position = Math.max(0, Math.min(gridRect.width, position));
             
-            // Update slider handle and fill
-            sliderHandle.style.left = position + '%';
-            sliderFill.style.width = position + '%';
+            // Update slider line position
+            sliderLine.style.left = position + 'px';
             
-            // Update all after images
-            afterImages.forEach(afterImage => {
-                afterImage.style.width = position + '%';
+            // Update each comparison item based on slider position
+            comparisonItems.forEach((item) => {
+                const itemRect = item.getBoundingClientRect();
+                const afterImage = item.querySelector('.after-image');
+                
+                // Calculate relative position within this item
+                const itemLeft = itemRect.left - gridRect.left;
+                const itemRight = itemLeft + itemRect.width;
+                
+                // Calculate how much of the after image to show
+                if (position >= itemLeft && position <= itemRight) {
+                    // Slider is over this item
+                    const relativePosition = position - itemLeft;
+                    const percentage = (relativePosition / itemRect.width) * 100;
+                    afterImage.style.width = percentage + '%';
+                } else if (position < itemLeft) {
+                    // Slider is to the left of this item
+                    afterImage.style.width = '0%';
+                } else {
+                    // Slider is to the right of this item
+                    afterImage.style.width = '100%';
+                }
             });
         }
 
@@ -1006,11 +1033,10 @@
             e.preventDefault();
         });
 
-        sliderTrack.addEventListener('mousedown', (e) => {
-            if (e.target === sliderTrack || e.target === sliderFill) {
-                isDragging = true;
-                updateSliderPosition(e.clientX);
-            }
+        sliderLine.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            updateSliderPosition(e.clientX);
+            e.preventDefault();
         });
 
         document.addEventListener('mouseup', () => {
@@ -1029,7 +1055,7 @@
             e.preventDefault();
         });
 
-        sliderTrack.addEventListener('touchstart', (e) => {
+        sliderLine.addEventListener('touchstart', (e) => {
             isDragging = true;
             const touch = e.touches[0];
             updateSliderPosition(touch.clientX);
@@ -1046,6 +1072,12 @@
                 updateSliderPosition(touch.clientX);
                 e.preventDefault();
             }
+        });
+
+        // Initialize slider position
+        window.addEventListener('load', () => {
+            const gridRect = comparisonGrid.getBoundingClientRect();
+            updateSliderPosition(gridRect.left + gridRect.width / 2);
         });
 
         // Skill bars animation
