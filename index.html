@@ -13,13 +13,13 @@
         }
 
         :root {
-            --primary-bg: #FFFFFF;
-            --secondary-bg: #FAFAFA;
-            --card-bg: #F5F5F5;
-            --text-primary: #000000;
-            --text-secondary: #666666;
-            --border-color: #E5E5E5;
-            --accent: #000000;
+            --primary-bg: #000000;
+            --secondary-bg: #0A0A0A;
+            --card-bg: #151515;
+            --text-primary: #FFFFFF;
+            --text-secondary: #A0A0A0;
+            --border-color: #2A2A2A;
+            --accent: #FFFFFF;
         }
 
         body {
@@ -35,7 +35,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.98);
+            background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(10px);
             padding: 1.2rem 3rem;
             z-index: 1000;
@@ -100,7 +100,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=1920&h=1080&fit=crop') center/cover no-repeat;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=1920&h=1080&fit=crop') center/cover no-repeat;
             background-attachment: fixed;
             text-align: center;
             padding: 2rem;
@@ -113,13 +113,11 @@
             font-weight: 300;
             letter-spacing: 2px;
             animation: fadeInUp 1s ease;
-            color: #FFFFFF;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .hero-content .typing-text {
             font-size: 1.2rem;
-            color: #E5E5E5;
+            color: var(--text-secondary);
             margin-bottom: 3rem;
             font-weight: 300;
             letter-spacing: 1px;
@@ -129,10 +127,10 @@
         .cta-button {
             display: inline-block;
             padding: 14px 40px;
-            background: #FFFFFF;
-            color: #000000;
+            background: transparent;
+            color: var(--text-primary);
             text-decoration: none;
-            border: 1px solid #FFFFFF;
+            border: 1px solid var(--text-primary);
             font-weight: 400;
             transition: all 0.3s ease;
             animation: fadeInUp 1s ease 0.4s both;
@@ -142,11 +140,11 @@
         }
 
         .cta-button:hover {
-            background: transparent;
-            color: #FFFFFF;
+            background: var(--text-primary);
+            color: var(--primary-bg);
         }
 
-        /* Before/After Section */
+        /* Before/After Gallery Section */
         .before-after-section {
             background: var(--primary-bg);
             padding: 8rem 2rem;
@@ -170,44 +168,25 @@
             letter-spacing: 0.5px;
         }
 
-        .before-after-container {
-            max-width: 1400px;
+        .comparison-gallery-container {
+            max-width: 1600px;
             margin: 0 auto;
+            position: relative;
+        }
+
+        .comparison-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: 3rem;
-            padding: 0 2rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            position: relative;
         }
 
         .comparison-item {
-            background: var(--primary-bg);
-            border: 1px solid var(--border-color);
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .comparison-item:hover {
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transform: translateY(-5px);
-        }
-
-        .comparison-title {
-            text-align: center;
-            padding: 1.5rem;
-            font-size: 0.95rem;
-            font-weight: 400;
-            letter-spacing: 1.5px;
-            border-bottom: 1px solid var(--border-color);
-            background: var(--secondary-bg);
-        }
-
-        .comparison-slider {
             position: relative;
-            width: 100%;
             overflow: hidden;
-            cursor: ew-resize;
-            user-select: none;
-            aspect-ratio: 3/2;
+            aspect-ratio: 4/3;
+            background: var(--secondary-bg);
+            border: 1px solid var(--border-color);
         }
 
         .comparison-image {
@@ -221,7 +200,6 @@
             height: 100%;
             object-fit: cover;
             display: block;
-            pointer-events: none;
         }
 
         .before-image {
@@ -239,69 +217,89 @@
 
         .image-label {
             position: absolute;
-            top: 20px;
-            padding: 8px 18px;
-            background: rgba(255, 255, 255, 0.95);
-            color: #000000;
-            font-weight: 500;
+            top: 15px;
+            padding: 6px 16px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            font-weight: 400;
             font-size: 0.7rem;
             letter-spacing: 2px;
             z-index: 2;
-            border: 1px solid rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .before-image .image-label {
-            right: 20px;
+            right: 15px;
         }
 
         .after-image .image-label {
-            left: 20px;
+            left: 15px;
+        }
+
+        /* Global Slider Control */
+        .global-slider-control {
+            max-width: 1600px;
+            margin: 3rem auto 0;
+            padding: 0 2rem;
+        }
+
+        .slider-track {
+            position: relative;
+            height: 60px;
+            background: var(--secondary-bg);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .slider-fill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 50%;
+            background: var(--border-color);
+            pointer-events: none;
+            transition: width 0.05s ease-out;
         }
 
         .slider-handle {
             position: absolute;
-            top: 0;
             left: 50%;
-            width: 3px;
-            height: 100%;
-            background: #FFFFFF;
-            cursor: ew-resize;
-            transform: translateX(-50%);
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .handle-line {
-            flex: 1;
-            width: 3px;
-            background: #FFFFFF;
-        }
-
-        .handle-circle {
-            width: 48px;
-            height: 48px;
-            background: #FFFFFF;
-            border: 3px solid #000000;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: var(--text-primary);
+            border: 3px solid var(--primary-bg);
             border-radius: 50%;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 4px;
+            gap: 6px;
             transition: transform 0.2s ease;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.3);
         }
 
-        .slider-handle:hover .handle-circle {
-            transform: scale(1.1);
+        .slider-handle:hover {
+            transform: translate(-50%, -50%) scale(1.1);
         }
 
-        .handle-circle i {
-            color: #000000;
-            font-size: 0.65rem;
+        .slider-handle i {
+            color: var(--primary-bg);
+            font-size: 0.7rem;
+        }
+
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
         }
 
         /* Gallery Preview */
@@ -346,7 +344,6 @@
             width: 100%;
             overflow: hidden;
             position: relative;
-            border: 1px solid var(--border-color);
         }
 
         .about-image img {
@@ -355,10 +352,12 @@
             object-fit: cover;
             transition: transform 0.5s ease;
             display: block;
+            filter: grayscale(100%);
         }
 
         .about-image:hover img {
             transform: scale(1.05);
+            filter: grayscale(0%);
         }
 
         .skills-grid {
@@ -451,7 +450,7 @@
         .form-group textarea {
             width: 100%;
             padding: 14px;
-            background: var(--primary-bg);
+            background: var(--secondary-bg);
             border: 1px solid var(--border-color);
             color: var(--text-primary);
             font-family: inherit;
@@ -463,6 +462,7 @@
         .form-group textarea:focus {
             outline: none;
             border-color: var(--text-primary);
+            background: var(--primary-bg);
         }
 
         .form-group textarea {
@@ -473,8 +473,8 @@
         .submit-btn {
             width: 100%;
             padding: 15px;
-            background: var(--text-primary);
-            color: var(--primary-bg);
+            background: transparent;
+            color: var(--text-primary);
             border: 1px solid var(--text-primary);
             font-weight: 400;
             font-size: 1rem;
@@ -484,8 +484,8 @@
         }
 
         .submit-btn:hover {
-            background: transparent;
-            color: var(--text-primary);
+            background: var(--text-primary);
+            color: var(--primary-bg);
         }
 
         /* Footer */
@@ -508,7 +508,7 @@
             height: 45px;
             background: var(--text-primary);
             color: var(--primary-bg);
-            border: 1px solid var(--text-primary);
+            border: none;
             cursor: pointer;
             opacity: 0;
             visibility: hidden;
@@ -576,9 +576,9 @@
 
         /* Mobile Responsive */
         @media (max-width: 1024px) {
-            .before-after-container {
-                grid-template-columns: 1fr;
-                gap: 3rem;
+            .comparison-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
             }
         }
 
@@ -629,12 +629,9 @@
                 font-size: 1rem;
             }
 
-            .before-after-container {
+            .comparison-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .comparison-item {
-                min-width: 100%;
+                gap: 1.5rem;
             }
 
             .about-content {
@@ -653,6 +650,10 @@
             .contact-container {
                 padding: 2rem;
             }
+
+            .global-slider-control {
+                padding: 0 1rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -665,13 +666,9 @@
                 font-size: 0.85rem;
             }
 
-            .comparison-slider {
-                aspect-ratio: 1/1;
-            }
-
-            .handle-circle {
-                width: 40px;
-                height: 40px;
+            .slider-handle {
+                width: 50px;
+                height: 50px;
             }
         }
     </style>
@@ -710,147 +707,98 @@
         </div>
     </section>
 
-    <!-- Before/After Section -->
+    <!-- Before/After Gallery Section -->
     <section id="beforeafter" class="before-after-section">
         <h2 class="section-title">BEFORE & AFTER</h2>
-        <p class="section-subtitle">Explore the transformation through professional editing</p>
+        <p class="section-subtitle">Drag the slider below to see the transformation across all images</p>
         
-        <div class="before-after-container">
-            <!-- Comparison 1 -->
-            <div class="comparison-item">
-                <h3 class="comparison-title">PORTRAIT ENHANCEMENT</h3>
-                <div class="comparison-slider" data-slider="1">
+        <div class="comparison-gallery-container">
+            <div class="comparison-grid" id="comparisonGrid">
+                <!-- Comparison Item 1 -->
+                <div class="comparison-item">
                     <div class="comparison-image before-image">
-                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=1200&h=800&fit=crop&sat=-50&brightness=-10" alt="Before">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&h=600&fit=crop&sat=-50&brightness=-10" alt="Before">
                         <div class="image-label">BEFORE</div>
                     </div>
                     <div class="comparison-image after-image">
-                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=1200&h=800&fit=crop" alt="After">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&h=600&fit=crop" alt="After">
                         <div class="image-label">AFTER</div>
                     </div>
-                    <div class="slider-handle">
-                        <div class="handle-line"></div>
-                        <div class="handle-circle">
-                            <i class="fas fa-chevron-left"></i>
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                        <div class="handle-line"></div>
+                </div>
+
+                <!-- Comparison Item 2 -->
+                <div class="comparison-item">
+                    <div class="comparison-image before-image">
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&sat=-80" alt="Before">
+                        <div class="image-label">BEFORE</div>
+                    </div>
+                    <div class="comparison-image after-image">
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop" alt="After">
+                        <div class="image-label">AFTER</div>
+                    </div>
+                </div>
+
+                <!-- Comparison Item 3 -->
+                <div class="comparison-item">
+                    <div class="comparison-image before-image">
+                        <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&h=600&fit=crop&sat=-60&brightness=-15" alt="Before">
+                        <div class="image-label">BEFORE</div>
+                    </div>
+                    <div class="comparison-image after-image">
+                        <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&h=600&fit=crop" alt="After">
+                        <div class="image-label">AFTER</div>
+                    </div>
+                </div>
+
+                <!-- Comparison Item 4 -->
+                <div class="comparison-item">
+                    <div class="comparison-image before-image">
+                        <img src="https://images.unsplash.com/photo-1514306688772-aadcb36c4bcc?w=800&h=600&fit=crop&sat=-70" alt="Before">
+                        <div class="image-label">BEFORE</div>
+                    </div>
+                    <div class="comparison-image after-image">
+                        <img src="https://images.unsplash.com/photo-1514306688772-aadcb36c4bcc?w=800&h=600&fit=crop" alt="After">
+                        <div class="image-label">AFTER</div>
+                    </div>
+                </div>
+
+                <!-- Comparison Item 5 -->
+                <div class="comparison-item">
+                    <div class="comparison-image before-image">
+                        <img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800&h=600&fit=crop&sat=-50&brightness=-20" alt="Before">
+                        <div class="image-label">BEFORE</div>
+                    </div>
+                    <div class="comparison-image after-image">
+                        <img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800&h=600&fit=crop" alt="After">
+                        <div class="image-label">AFTER</div>
+                    </div>
+                </div>
+
+                <!-- Comparison Item 6 -->
+                <div class="comparison-item">
+                    <div class="comparison-image before-image">
+                        <img src="https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?w=800&h=600&fit=crop&sat=-60&brightness=-20" alt="Before">
+                        <div class="image-label">BEFORE</div>
+                    </div>
+                    <div class="comparison-image after-image">
+                        <img src="https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?w=800&h=600&fit=crop" alt="After">
+                        <div class="image-label">AFTER</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Comparison 2 -->
-            <div class="comparison-item">
-                <h3 class="comparison-title">LANDSCAPE COLOR GRADING</h3>
-                <div class="comparison-slider" data-slider="2">
-                    <div class="comparison-image before-image">
-                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=800&fit=crop&sat=-80" alt="Before">
-                        <div class="image-label">BEFORE</div>
-                    </div>
-                    <div class="comparison-image after-image">
-                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=800&fit=crop" alt="After">
-                        <div class="image-label">AFTER</div>
-                    </div>
-                    <div class="slider-handle">
-                        <div class="handle-line"></div>
-                        <div class="handle-circle">
-                            <i class="fas fa-chevron-left"></i>
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                        <div class="handle-line"></div>
+            <!-- Global Slider Control -->
+            <div class="global-slider-control">
+                <div class="slider-track" id="sliderTrack">
+                    <div class="slider-fill" id="sliderFill"></div>
+                    <div class="slider-handle" id="sliderHandle">
+                        <i class="fas fa-chevron-left"></i>
+                        <i class="fas fa-chevron-right"></i>
                     </div>
                 </div>
-            </div>
-
-            <!-- Comparison 3 -->
-            <div class="comparison-item">
-                <h3 class="comparison-title">AUTOMOTIVE PHOTOGRAPHY</h3>
-                <div class="comparison-slider" data-slider="3">
-                    <div class="comparison-image before-image">
-                        <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1200&h=800&fit=crop&sat=-60&brightness=-15" alt="Before">
-                        <div class="image-label">BEFORE</div>
-                    </div>
-                    <div class="comparison-image after-image">
-                        <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1200&h=800&fit=crop" alt="After">
-                        <div class="image-label">AFTER</div>
-                    </div>
-                    <div class="slider-handle">
-                        <div class="handle-line"></div>
-                        <div class="handle-circle">
-                            <i class="fas fa-chevron-left"></i>
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                        <div class="handle-line"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Comparison 4 -->
-            <div class="comparison-item">
-                <h3 class="comparison-title">EVENT PHOTOGRAPHY</h3>
-                <div class="comparison-slider" data-slider="4">
-                    <div class="comparison-image before-image">
-                        <img src="https://images.unsplash.com/photo-1514306688772-aadcb36c4bcc?w=1200&h=800&fit=crop&sat=-70" alt="Before">
-                        <div class="image-label">BEFORE</div>
-                    </div>
-                    <div class="comparison-image after-image">
-                        <img src="https://images.unsplash.com/photo-1514306688772-aadcb36c4bcc?w=1200&h=800&fit=crop" alt="After">
-                        <div class="image-label">AFTER</div>
-                    </div>
-                    <div class="slider-handle">
-                        <div class="handle-line"></div>
-                        <div class="handle-circle">
-                            <i class="fas fa-chevron-left"></i>
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                        <div class="handle-line"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Comparison 5 -->
-            <div class="comparison-item">
-                <h3 class="comparison-title">URBAN NIGHT PHOTOGRAPHY</h3>
-                <div class="comparison-slider" data-slider="5">
-                    <div class="comparison-image before-image">
-                        <img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1200&h=800&fit=crop&sat=-50&brightness=-20" alt="Before">
-                        <div class="image-label">BEFORE</div>
-                    </div>
-                    <div class="comparison-image after-image">
-                        <img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1200&h=800&fit=crop" alt="After">
-                        <div class="image-label">AFTER</div>
-                    </div>
-                    <div class="slider-handle">
-                        <div class="handle-line"></div>
-                        <div class="handle-circle">
-                            <i class="fas fa-chevron-left"></i>
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                        <div class="handle-line"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Comparison 6 -->
-            <div class="comparison-item">
-                <h3 class="comparison-title">STUDIO LIGHTING</h3>
-                <div class="comparison-slider" data-slider="6">
-                    <div class="comparison-image before-image">
-                        <img src="https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?w=1200&h=800&fit=crop&sat=-60&brightness=-20" alt="Before">
-                        <div class="image-label">BEFORE</div>
-                    </div>
-                    <div class="comparison-image after-image">
-                        <img src="https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?w=1200&h=800&fit=crop" alt="After">
-                        <div class="image-label">AFTER</div>
-                    </div>
-                    <div class="slider-handle">
-                        <div class="handle-line"></div>
-                        <div class="handle-circle">
-                            <i class="fas fa-chevron-left"></i>
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                        <div class="handle-line"></div>
-                    </div>
+                <div class="slider-labels">
+                    <span>BEFORE</span>
+                    <span>AFTER</span>
                 </div>
             </div>
         </div>
@@ -1028,73 +976,76 @@
             });
         });
 
-        // Before/After Comparison Slider functionality
-        const comparisonSliders = document.querySelectorAll('.comparison-slider');
-        
-        comparisonSliders.forEach((slider) => {
-            const afterImage = slider.querySelector('.after-image');
-            const sliderHandle = slider.querySelector('.slider-handle');
-            let isSliding = false;
-            let currentSlider = null;
+        // Global Before/After Slider
+        const sliderTrack = document.getElementById('sliderTrack');
+        const sliderHandle = document.getElementById('sliderHandle');
+        const sliderFill = document.getElementById('sliderFill');
+        const afterImages = document.querySelectorAll('.after-image');
+        let isDragging = false;
 
-            function updateSliderPosition(x) {
-                const rect = slider.getBoundingClientRect();
-                let position = ((x - rect.left) / rect.width) * 100;
-                
-                // Clamp between 0 and 100
-                position = Math.max(0, Math.min(100, position));
-                
+        function updateSliderPosition(clientX) {
+            const rect = sliderTrack.getBoundingClientRect();
+            let position = ((clientX - rect.left) / rect.width) * 100;
+            
+            // Clamp between 0 and 100
+            position = Math.max(0, Math.min(100, position));
+            
+            // Update slider handle and fill
+            sliderHandle.style.left = position + '%';
+            sliderFill.style.width = position + '%';
+            
+            // Update all after images
+            afterImages.forEach(afterImage => {
                 afterImage.style.width = position + '%';
-                sliderHandle.style.left = position + '%';
+            });
+        }
+
+        // Mouse events
+        sliderHandle.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            e.preventDefault();
+        });
+
+        sliderTrack.addEventListener('mousedown', (e) => {
+            if (e.target === sliderTrack || e.target === sliderFill) {
+                isDragging = true;
+                updateSliderPosition(e.clientX);
             }
+        });
 
-            // Mouse events
-            sliderHandle.addEventListener('mousedown', (e) => {
-                isSliding = true;
-                currentSlider = slider;
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                updateSliderPosition(e.clientX);
+            }
+        });
+
+        // Touch events for mobile
+        sliderHandle.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            e.preventDefault();
+        });
+
+        sliderTrack.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            const touch = e.touches[0];
+            updateSliderPosition(touch.clientX);
+            e.preventDefault();
+        });
+
+        document.addEventListener('touchend', () => {
+            isDragging = false;
+        });
+
+        document.addEventListener('touchmove', (e) => {
+            if (isDragging) {
+                const touch = e.touches[0];
+                updateSliderPosition(touch.clientX);
                 e.preventDefault();
-            });
-
-            document.addEventListener('mouseup', () => {
-                if (currentSlider === slider) {
-                    isSliding = false;
-                    currentSlider = null;
-                }
-            });
-
-            document.addEventListener('mousemove', (e) => {
-                if (isSliding && currentSlider === slider) {
-                    updateSliderPosition(e.clientX);
-                }
-            });
-
-            // Touch events for mobile
-            sliderHandle.addEventListener('touchstart', (e) => {
-                isSliding = true;
-                currentSlider = slider;
-                e.preventDefault();
-            });
-
-            document.addEventListener('touchend', () => {
-                if (currentSlider === slider) {
-                    isSliding = false;
-                    currentSlider = null;
-                }
-            });
-
-            document.addEventListener('touchmove', (e) => {
-                if (isSliding && currentSlider === slider) {
-                    const touch = e.touches[0];
-                    updateSliderPosition(touch.clientX);
-                }
-            });
-
-            // Click on slider to move handle
-            slider.addEventListener('click', (e) => {
-                if (e.target !== sliderHandle && !sliderHandle.contains(e.target)) {
-                    updateSliderPosition(e.clientX);
-                }
-            });
+            }
         });
 
         // Skill bars animation
